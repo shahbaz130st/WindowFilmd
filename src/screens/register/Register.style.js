@@ -14,6 +14,15 @@ export const styles = StyleSheet.create({
         color: colors.blackTextColor,
         fontSize: 20,
         fontWeight: "700"
+    },image:{
+        width:320,
+        height:120
+    },
+    typeText:{
+        marginTop:10,
+        fontSize:18,
+        fontWeight:'500',
+        color:colors.blackTextColor
     }
 
 })

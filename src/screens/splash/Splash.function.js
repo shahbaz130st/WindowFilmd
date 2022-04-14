@@ -1,6 +1,6 @@
 const SplashFunctions = {
     timeOut: function (props) {
-        setTimeout(() => { props.navigation.navigate("Landing") }, 3000)
+        setTimeout(() => { props.navigation.navigate("Login") }, 3000)
     },
 }
 

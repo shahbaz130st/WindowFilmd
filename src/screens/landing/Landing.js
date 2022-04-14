@@ -1,33 +1,75 @@
 import React, { useEffect, useState } from "react";
-import { View, Text } from "react-native";
-import Button from "../../components/Button";
-import commonStyles from "../../themes/commonStyles";
-import { colors } from "../../themes/colors";
-import { strings } from "../../localization/i18n";
+import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { styles } from "./Landing.style";
-import LandingFunction from "./Landing.function";
+import Header from "../../components/Header";
+import Footer from "../../components/Footer";
+import { Icon } from "@rneui/base";
+import { colors } from "../../themes/colors";
+import Quote from "../../components/Quotes";
 const Landing = (props) => {
+  const data=[
+    {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:1},
+    {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:2},
+    {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:3},
+    {Title:'KBSC job center2',subTitle:"quote 27",place:'KBSC in khiyali',date:'last modified:2/14/21',id:4}
+  ]
     return (
-        <View style={styles.mainView}>
-            <Button
-                buttonStyle={[commonStyles.buttonStyle, { backgroundColor: colors.primaryColor }]}
-                textStyle={commonStyles.textStyle}
-                text={strings("landingScreen.agentSingIn")}
-                onPress={() => {
-                    // props.navigation.navigate("Register")
-                    // loginValidation(email, password)
-                }}
-            />
-            <Button
-                buttonStyle={[commonStyles.buttonStyle, { backgroundColor: colors.transparentColor, borderColor: colors.primaryColor, borderWidth: 1 }]}
-                textStyle={[commonStyles.textStyle, { color: colors.primaryColor }]}
-                text={strings("landingScreen.clientSignIn")}
-                onPress={() => {
-                    props.navigation.navigate("Login")
-                    // loginValidation(email, password)
-                }}
-            />
-        </View>
+        <>
+          <Header left={"Help"} right={"Map"} center={"22 Quotes"}/>
+          <View style={styles.mainView}>
+          <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
+            <TouchableOpacity>
+              <View style={styles.headerView}>
+              <Text style={styles.headerText}>
+                Browse film and performance data
+              </Text>
+              <Icon
+               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+               </View>
+            </TouchableOpacity>
+            <View style={styles.line}/>
+            <Text style={styles.QouteText}>QUOTE CENTER</Text>
+            <TouchableOpacity>
+              <View style={styles.headerView}>
+              <View style={{flexDirection:'row'}}>
+              <Icon
+               name='circle-with-plus' style={{marginRight:10}} type="entypo" color={colors.primaryColor} size={25}/>
+              <Text style={{...styles.headerText,color:colors.blackTextColor,fontWeight:'500'}}>
+               Create a new quote
+              </Text>
+               </View>
+              <Icon
+               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+               </View>
+            </TouchableOpacity>
+            <View style={styles.line1}/>
+            <Text style={{...styles.QouteText,fontSize:19}}>19 UNSENT QUOTES</Text>
+            <View style={styles.line3}/>
+                    <FlatList
+                         data={data}
+                         keyExtractor={(item, index) => {
+                           return index.toString();
+                            }}
+                        showsVerticalScrollIndicator={false}
+                        removeClippedSubviews={false}
+                        style={{ width: "100%" }}
+                        renderItem={({ item, index }) => {
+                                return (
+                                  <>
+                                    <Quote title={item.Title}
+                                    subtitle={item.subTitle}
+                                    place={item.place}
+                                    date={item.date}/>
+                                    <View style={styles.line}/>
+                                    </>
+                                )
+                            }}
+                        /> 
+          </KeyboardAwareScrollView>
+          </View>
+          <Footer left={"About"} right={"Settings"}/>
+        </>
     )
 }
 export default Landing;

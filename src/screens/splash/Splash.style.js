@@ -7,15 +7,8 @@ export const styles = StyleSheet.create({
         backgroundColor: colors.secondaryColor,
         alignItems: "center",
         justifyContent: "center"
-    },
-    shahjeeTextStyle: {
-        color: colors.primaryColor,
-        fontSize: 28,
-        fontWeight: "900"
-    },
-    incTextStyle: {
-        color: colors.blackTextColor,
-        fontSize: 28,
-        fontWeight: "900"
+    },image:{
+        width:320,
+        height:120
     }
 })

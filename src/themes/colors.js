@@ -1,5 +1,5 @@
 export const colors={
-    primaryColor:"#FF7518",
+    primaryColor:"#6B8E23",
     secondaryColor:"#FFFFFF",
     whiteColor:"#FFFFFF",
     gradient1:"#ED6578",
@@ -21,4 +21,5 @@ export const colors={
     skyBlueColor:"#EDF2FF",
     smallText:"#403572",
     pendingColor:"#515151",
+    darkGray:"#404040"
 }

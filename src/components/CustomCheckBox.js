@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Image, StyleSheet, Text, TouchableOpacity } from 'react-native';
 import _ from 'lodash';
+import { colors } from '../themes/colors';
 const checkIcon = require("../assets/images/check.png")
 const CustomCheckBox = props => {
     return (
@@ -9,7 +10,7 @@ const CustomCheckBox = props => {
             marginVertical: 5
         }, props.containerStyle]} onPress={props.onChange}>
             <View
-                style={[styles.checkBoxContainer, props.checkstyle]}>
+                style={[styles.checkBoxContainer,{borderColor:props.isChecked?colors.primaryColor:colors.greyColor},props.checkstyle]}>
                 {props.isChecked &&
                     <Image
                         style={{ width: '80%', height: '80%', resizeMode: "contain", tintColor: props.tintColor }}
@@ -37,12 +38,13 @@ export default CustomCheckBox;
 const styles = StyleSheet.create(
     {
         checkBoxContainer: {
-            width: 12,
-            height: 12,
+            width: 16,
+            height: 16,
             borderRadius: 2,
             backgroundColor: '#fff',
             alignItems: 'center',
             justifyContent: 'center',
+            borderWidth:2
         },
     }
 )

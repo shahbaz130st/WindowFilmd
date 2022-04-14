@@ -1,160 +1,149 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text,Image } from "react-native";
 import { styles } from "./Register.style";
 import { strings } from "../../localization/i18n";
 import InputField from "../../components/InputField";
 import { colors } from "../../themes/colors";
 import commonStyles from "../../themes/commonStyles";
 import Button from "../../components/Button";
+import CustomCheckBox from "../../components/CustomCheckBox";
 import RegisterFunction from "./Register.function";
-import DropDownPicker from 'react-native-dropdown-picker';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
+// import DropDownPicker from 'react-native-dropdown-picker';
 import Loader from "../../utils/Loader";
+import { useNavigation } from "@react-navigation/native";
 const Register = () => {
-    useEffect(() => {
-        fetchProfessionApiCall()
-    }, [])
-    const [legalName, setLegalName] = useState("")
+    const [purchaser, setPurchaser] = useState("")
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
-    const [password, setPassword] = useState("")
-    const [confirmPassword, setConfirmedPassword] = useState("")
-    const [businessName, setBusinessName] = useState("")
-    const [location, setLocation] = useState("")
+    const [contactPerson, setContactPerson] = useState("")
+    const [instalationAddress, setInstalationAddress] = useState("")
+    const [city, setCity] = useState("")
+    const [state, setState] = useState("")
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState([]);
     const [items, setItems] = useState([]);
+    const navigation=useNavigation()
 
     const [loading, data, error, fetchProfessionApiCall, registerValidation] = RegisterFunction()
     return (
         <View style={styles.mainView}>
-            <View style={{ flex: 1 }} />
+            <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }} showsVerticalScrollIndicator={false} >
             <View style={{ width: "100%", alignItems: "center" }}>
-                <Text style={{ color: "black", fontSize: 40, fontWeight: "900" }}>{strings("signUpScreen.Hello")}</Text>
-                <Text style={styles.blackTextStyle}>{strings("loginScreen.Please")}<Text style={styles.primaryTextStyle}>{" "}{strings("signUpScreen.signUp")}<Text style={styles.blackTextStyle}>{" "}{strings("signUpScreen.toStartJourny")}</Text></Text></Text>
+               <Image source={require('../../assets/images/splash.jpeg')} style={styles.image}/>
+                {/* <Text style={styles.blackTextStyle}>{"Customer Information"}</Text> */}
                 <View style={[commonStyles.innerViewStyle]} >
                     <InputField
-                        placeholder={strings("signUpScreen.legalName")}
+                        placeholder={"Purchaser Name"}
                         placeholderTextColor={colors.blackTextColor}
                         containerStyle={commonStyles.inputContainerStyle}
                         inputStyle={commonStyles.inputInnerStyle}
-                        onChangeText={(text) => setLegalName(text)}
-                        keyboardType={"email-address"}
-                        autoComplete={"email"}
-                        value={legalName}
-                        sterick={"*"}
+                        onChangeText={(text) => setPurchaser(text)}
+                        value={purchaser}
+                        // sterick={"*"}
                         sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <InputField
-                        placeholder={strings("signUpScreen.email")}
+                        placeholder={"Contact Person"}
                         placeholderTextColor={colors.blackTextColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
-                        onChangeText={(text) => setEmail(text)}
-                        keyboardType={"email-address"}
-                        autoComplete={"email"}
-                        value={email}
-                        onEndEditing={() => setEmail(email.trim())}
-                        sterick={"*"}
+                        onChangeText={(text) => setContactPerson(text)}
+                        value={contactPerson}
+                        // sterick={"*"}
                         sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <InputField
-                        placeholder={strings("signUpScreen.phoneNumber")}
+                        placeholder={"Phone"}
                         placeholderTextColor={colors.blackTextColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setPhoneNumber(text)}
-                        keyboardType={"email-address"}
                         value={phoneNumber}
-                        sterick={"*"}
+                        // sterick={"*"}
                         sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <InputField
-                        placeholder={strings("signUpScreen.password")}
-                        autoComplete={"password"}
-                        placeholderTextColor={colors.blackTextColor}
-                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
-                        inputStyle={commonStyles.passwordInputinnerStyle}
-                        secureTextEntry={true}
-                        onChangeText={(text) => setPassword(text)}
-                        value={password}
-                        sterick={"*"}
-                        sterickTextViewStyle={commonStyles.sterickTextViewStyle}
-                        sterickTextStyle={commonStyles.sterickTextStyle}
-                    />
-                    <InputField
-                        placeholder={strings("signUpScreen.confirmPassword")}
-                        autoComplete={"password"}
-                        placeholderTextColor={colors.blackTextColor}
-                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
-                        inputStyle={commonStyles.passwordInputinnerStyle}
-                        secureTextEntry={true}
-                        onChangeText={(text) => setConfirmedPassword(text)}
-                        value={confirmPassword}
-                        sterick={"*"}
-                        sterickTextViewStyle={commonStyles.sterickTextViewStyle}
-                        sterickTextStyle={commonStyles.sterickTextStyle}
-                    />
-                    <InputField
-                        placeholder={strings("signUpScreen.businessName")}
+                        placeholder={"Email"}
                         placeholderTextColor={colors.blackTextColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
-                        onChangeText={(text) => setBusinessName(text)}
-                        keyboardType={"email-address"}
-                        value={businessName}
-                        sterick={"*"}
+                        // secureTextEntry={true}
+                        onChangeText={(text) => setEmail(text)}
+                        value={email}
+                        // sterick={"*"}
                         sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <InputField
-                        placeholder={strings("signUpScreen.location")}
+                        placeholder={"Instalation Address"}
                         placeholderTextColor={colors.blackTextColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
-                        onChangeText={(text) => setLocation(text)}
-                        keyboardType={"email-address"}
-                        value={location}
-                        sterick={"*"}
+                        // secureTextEntry={true}
+                        onChangeText={(text) => setInstalationAddress(text)}
+                        value={instalationAddress}
+                        // sterick={"*"}
                         sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
-                    {
-                        data !== null &&
-                        <DropDownPicker
-                            schema={{
-                                label: 'title',
-                                value: '_id'
-                            }}
-                            // multiple={true}
-                            style={{ width: "100%", marginTop: 20, borderTopColor: "white", borderLeftColor: "white", borderRightColor: "white" }}
-                            placeholder={"Select Profession"}
-                            open={open}
-                            value={value}
-                            items={data}
-                            setOpen={setOpen}
-                            setValue={setValue}
-                            setItems={setItems}
-                            multiple={true}
-                            min={0}
-                            max={5}
-                        />
-                    }
+                    <InputField
+                        placeholder={"City/Suburb"}
+                        placeholderTextColor={colors.blackTextColor}
+                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
+                        inputStyle={commonStyles.inputInnerStyle}
+                        onChangeText={(text) => setCity(text)}
+                        value={city}
+                        // sterick={"*"}
+                        sterickTextViewStyle={commonStyles.sterickTextViewStyle}
+                        sterickTextStyle={commonStyles.sterickTextStyle}
+                    />
+                    <InputField
+                        placeholder={"State"}
+                        placeholderTextColor={colors.blackTextColor}
+                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
+                        inputStyle={commonStyles.inputInnerStyle}
+                        onChangeText={(text) => setState(text)}
+                        value={state}
+                        // sterick={"*"}
+                        sterickTextViewStyle={commonStyles.sterickTextViewStyle}
+                        sterickTextStyle={commonStyles.sterickTextStyle}
+                    />
+                    <Text style={styles.typeText}>Type</Text>
+                    <CustomCheckBox label1={"Commercial"}/>
+                    <CustomCheckBox label1={"Residential"}/>
+                    <Text
+                       style={{
+                       marginVertical: 10,
+                       fontSize: 14,
+                        }}>
+                     {"Already have an account? "}
+                     <Text
+                    style={{
+                       color: colors.tintColor,
+                      fontSize: 14,
+                     }}
+                     onPress={() => navigation.navigate("Login")}
+                     >
+                  {'LogIn'}
+                  </Text>
+                  </Text>
                     <View style={{ alignItems: "center" }}>
                         <Button
                             buttonStyle={[commonStyles.buttonStyle, { backgroundColor: colors.primaryColor, width: 161 }]}
                             textStyle={commonStyles.textStyle}
-                            text={strings("signUpScreen.signUpButtonText")}
+                            text={"SignUp"}
                             onPress={() => {
-                                registerValidation(legalName, email, phoneNumber, password, confirmPassword, businessName, location, value)
+                                // registerValidation( email, phoneNumber,value)
                             }}
                         />
                     </View>
                 </View>
             </View>
-            <View style={{ flex: 1 }} />
+            </KeyboardAwareScrollView>
             <Loader visible={loading} />
         </View>
     )

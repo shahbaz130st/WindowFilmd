@@ -3,7 +3,9 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor
+        backgroundColor: colors.secondaryColor,
+        alignItems: "center",
+        justifyContent:"center"
     },
     primaryTextStyle: {
         color: colors.primaryColor,
@@ -14,6 +16,9 @@ export const styles = StyleSheet.create({
         color: colors.blackTextColor,
         fontSize: 20,
         fontWeight: "700"
+    },image:{
+        width:320,
+        height:120
     }
 
 })
