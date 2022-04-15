@@ -21,5 +21,6 @@ export const colors={
     skyBlueColor:"#EDF2FF",
     smallText:"#403572",
     pendingColor:"#515151",
-    darkGray:"#404040"
+    darkGray:"#404040",
+    darkred:'#BE0032'
 }

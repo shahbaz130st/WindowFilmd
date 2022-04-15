@@ -47,6 +47,18 @@ const styles = StyleSheet.create(
             borderWidth: 2,
             flexDirection: "row"
         },
+        inputContainerStyle1: {
+            backgroundColor: colors.whiteColor,
+            width: "90%",
+            height: Platform.OS === "android" ? phoneScreen.height * 7 / 100 : phoneScreen.height * 6 / 100,
+            borderRadius: phoneScreen.height * 1 / 100,
+            paddingHorizontal: 25,
+            borderColor: colors.greyColor,
+            borderWidth: 2,
+            flexDirection: "row",
+            justifyContent:'center',
+            alignItems:'center'
+        },
         inputInnerStyle: {
             height: "100%",
             width: "100%",

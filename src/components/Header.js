@@ -1,21 +1,52 @@
 import React from "react";
 import { TouchableOpacity, Text, Image, View, StyleSheet } from "react-native";
 import { colors } from "../themes/colors"
+import { Icon } from "@rneui/base";
+
 const Header = (props) => {
     return (
         <View style={styles.Head}> 
-        <TouchableOpacity onPress={props.onPress}>
+        <TouchableOpacity onPress={props.leftOnPress}>
+        <View style={{flexDirection:'row',alignItems:'center'}}>
+        {
+            props.backArrow?
+            <Icon
+               name='left' 
+               type="antdesign" 
+               color={colors.whiteColor} 
+               size={25}
+              />
+               :null
+            }
             <Text style={styles.textHead}>
                 {props.left}
             </Text>
+        </View>
         </TouchableOpacity>
-        <Text style={{...styles.textHead,fontSize:17}}>
+        <Text style={{...styles.textHead,fontSize:17,marginRight:props.backArrow?15:0}}>
                 {props.center}
             </Text>
-        <TouchableOpacity onPress={props.onPress}>
-        <Text style={styles.textHead}>
+        <TouchableOpacity onPress={props.rightOnPress}>
+           {
+            props.rightIcon?
+            <Icon
+               name='home' type="font-awesome" color={colors.whiteColor} size={25}/>
+               :props.right2Icon?
+               <View style={{flexDirection:'row'}}>
+               <Icon
+               name='search' type="feather" color={colors.whiteColor} size={18}/>
+               <Icon
+               name='pencil-circle'
+               type="material-community" 
+               color={colors.whiteColor} 
+               style={{paddingHorizontal:5}}
+               size={18}/>
+               </View>
+               :
+            <Text style={styles.textHead}>
                 {props.right}
             </Text>
+            }
         </TouchableOpacity>
         </View>
     )

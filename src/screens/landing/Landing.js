@@ -7,6 +7,7 @@ import Footer from "../../components/Footer";
 import { Icon } from "@rneui/base";
 import { colors } from "../../themes/colors";
 import Quote from "../../components/Quotes";
+import { useNavigation } from "@react-navigation/native";
 const Landing = (props) => {
   const data=[
     {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:1},
@@ -14,12 +15,13 @@ const Landing = (props) => {
     {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:3},
     {Title:'KBSC job center2',subTitle:"quote 27",place:'KBSC in khiyali',date:'last modified:2/14/21',id:4}
   ]
+  const navigation =useNavigation()
     return (
         <>
           <Header left={"Help"} right={"Map"} center={"22 Quotes"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate('BrowseFilms')}>
               <View style={styles.headerView}>
               <Text style={styles.headerText}>
                 Browse film and performance data
