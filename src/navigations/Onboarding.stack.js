@@ -7,6 +7,12 @@ import Landing from "../screens/landing/Landing";
 import BrowseFilms from "../screens/BrowseFilms/BrowseFilms";
 import SingleFilms from "../screens/BrowseFilms/SingleFilms";
 import DateSheet from "../screens/BrowseFilms/DateSheet";
+import Map from "../screens/Map/Map";
+import MapClient from "../screens/MapClient/MapClient";
+import CreateQuote from "../screens/CreateQuote/CreateQuote";
+import SelectRoom from "../screens/CreateQuote/SelectRoom";
+import NewQuote from "../screens/NewQuote/NewQuote";
+import TintFilms from "../screens/TintFilms/TintFilms";
 
 const OnBoardingStack = createNativeStackNavigator();
 
@@ -20,6 +26,12 @@ const OnBoarding = () => {
             <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} />
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />
+            <OnBoardingStack.Screen name="Map" component={Map} />
+            <OnBoardingStack.Screen name="MapClient" component={MapClient} />
+            <OnBoardingStack.Screen name="CreateQuote" component={CreateQuote} />
+            <OnBoardingStack.Screen name="SelectRoom" component={SelectRoom} />
+            <OnBoardingStack.Screen name="NewQuote" component={NewQuote} />
+            <OnBoardingStack.Screen name="TintFilms" component={TintFilms} />
         </OnBoardingStack.Navigator>
     )
 }

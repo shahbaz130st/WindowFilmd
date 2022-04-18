@@ -22,5 +22,6 @@ export const colors={
     smallText:"#403572",
     pendingColor:"#515151",
     darkGray:"#404040",
-    darkred:'#BE0032'
+    darkred:'#BE0032',
+    blue:"#0000FF"
 }

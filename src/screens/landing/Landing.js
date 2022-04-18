@@ -18,7 +18,7 @@ const Landing = (props) => {
   const navigation =useNavigation()
     return (
         <>
-          <Header left={"Help"} right={"Map"} center={"22 Quotes"}/>
+          <Header left={"Help"} right={"Map"} rightOnPress={()=>navigation.navigate('Map')} center={"22 Quotes"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
             <TouchableOpacity onPress={()=>navigation.navigate('BrowseFilms')}>
@@ -32,7 +32,7 @@ const Landing = (props) => {
             </TouchableOpacity>
             <View style={styles.line}/>
             <Text style={styles.QouteText}>QUOTE CENTER</Text>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={()=>navigation.navigate("NewQuote")}>
               <View style={styles.headerView}>
               <View style={{flexDirection:'row'}}>
               <Icon
@@ -62,7 +62,8 @@ const Landing = (props) => {
                                     <Quote title={item.Title}
                                     subtitle={item.subTitle}
                                     place={item.place}
-                                    date={item.date}/>
+                                    date={item.date}
+                                    onPress={()=>navigation.navigate('MapClient',{title:'Quotes'})}/>
                                     <View style={styles.line}/>
                                     </>
                                 )

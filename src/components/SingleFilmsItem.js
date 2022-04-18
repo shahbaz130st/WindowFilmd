@@ -29,7 +29,13 @@ const SingleFilmsItem = (props) => {
                color={colors.greyColor}
                size={20}
                />
-               :
+               :props.circleIcon?
+               <Icon
+               name="exclamationcircleo"
+               type="antdesign"
+               color={colors.greyColor}
+               size={20}
+               />:
               <Text style={styles.subtitle1}>
                 {props.subtitle}
               </Text>
