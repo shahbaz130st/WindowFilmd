@@ -12,6 +12,11 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 // import DropDownPicker from 'react-native-dropdown-picker';
 import Loader from "../../utils/Loader";
 import { useNavigation } from "@react-navigation/native";
+
+import auth from '@react-native-firebase/auth';
+
+
+
 const Register = () => {
     const [purchaser, setPurchaser] = useState("")
     const [email, setEmail] = useState("")
@@ -23,9 +28,44 @@ const Register = () => {
     const [open, setOpen] = useState(false);
     const [value, setValue] = useState([]);
     const [items, setItems] = useState([]);
+    const [initializing, setInitializing] = useState(true);
+    const [user, setUser] = useState();
     const navigation=useNavigation()
 
     const [loading, data, error, fetchProfessionApiCall, registerValidation] = RegisterFunction()
+
+    // useEffect(() => {
+    //     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    //     return subscriber; // unsubscribe on unmount
+    //   }, []);
+
+
+    //   function onAuthStateChanged(user) {
+    //     setUser(user);
+    //     if (initializing) setInitializing(false);
+    //   } 
+
+    //   if (initializing) return null;
+
+      const signUpUser = () => {
+        auth()
+        .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+        .then(() => {
+          console.log('User account created & signed in!');
+        })
+        .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
+      
+          if (error.code === 'auth/invalid-email') {
+            console.log('That email address is invalid!');
+          }
+      
+          console.error(error);
+        });
+      }
+      
     return (
         <View style={styles.mainView}>
             <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }} showsVerticalScrollIndicator={false} >
@@ -137,6 +177,7 @@ const Register = () => {
                             textStyle={commonStyles.textStyle}
                             text={"SignUp"}
                             onPress={() => {
+                                signUpUser();
                                 // registerValidation( email, phoneNumber,value)
                             }}
                         />
