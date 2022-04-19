@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, FlatList } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, Switch } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
-import { styles } from "./MapClient.style";
+import { styles } from "./Room.style";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import commonStyles from "../../themes/commonStyles";
@@ -11,9 +11,9 @@ import QuoteItem from "../../components/QuoteItem";
 import InputField from "../../components/InputField";
 import { Icon } from "@rneui/base";
 import RoomModal from "../../components/RoomModal";
-const MapClient = (props) => {
+const Room = (props) => {
   const data=[
-    {Title:'Client',subtitle:"Nutter",id:1},
+    {Title:'Name',subtitle:"Nutter",id:1},
     {Title:'Tint Films',subtitle:"Natura 15",id:2},
     {Title:'Notes',subtitle:"",id:4}
   ]
@@ -21,12 +21,14 @@ const MapClient = (props) => {
     {Title:'Office',subtitle:"1 Window",id:1},
     {Title:'Spare',subtitle:"1 Window",id:2},
   ]
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
+  const [isEnabled, setIsEnabled] = useState(false);
 
   const navigation = useNavigation()
   const route=useRoute()
   const onPress=(i)=>{
     switch (i.Title) {
-      case 'Client':
+      case 'Name':
         navigation.navigate('NewQuote',{title:'Job'})
         break;
     
@@ -40,10 +42,9 @@ const MapClient = (props) => {
     }
   }
 
-  const [visible,setVisible]=useState(false)
     return (
         <>
-          <Header rightIcon={true} backArrow={true} leftOnPress={()=>navigation.goBack()} left={route?.params?.title ? route.params.title:"Map"} center={"Client Name"}/>
+          <Header rightIcon={true} backArrow={true} leftOnPress={()=>navigation.goBack()} left={"Job"} center={"Room"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
                <FlatList
@@ -63,14 +64,15 @@ const MapClient = (props) => {
                     </View>
                     )
                   }}/>
-                  <Text style={{...styles.QouteText,fontSize:20}}>Rooms</Text>
-                  <TouchableOpacity onPress={()=>setVisible(true)}>
+                  <Text style={{...styles.QouteText,fontSize:20}}>Windows</Text>
+                  <View style={styles.line5}/>
+                  <TouchableOpacity onPress={()=>navigation.navigate('Windows')}>
                     <View style={styles.headerView}>
                   <View style={styles.NewTextView}>
                    <Icon
                     name='circle-with-plus' style={{marginRight:10}} type="entypo" color={colors.primaryColor} size={25}/>
                     <Text style={{...styles.headerText,color:colors.blackTextColor,fontWeight:'500'}}>
-                    Add a new Room
+                    Add a new window
                     </Text>
                   </View>
                   <Icon
@@ -88,8 +90,7 @@ const MapClient = (props) => {
                     return (
                     <View style={{padding:10}}>
                       <QuoteItem title={item.Title}
-                       subTitle={item.subtitle}
-                       onPress={()=>navigation.navigate('Room')}/>
+                       subTitle={item.subtitle}/>
                       <View style={styles.line1}/>
                       </View>
                       )}}
@@ -98,22 +99,27 @@ const MapClient = (props) => {
               <TouchableOpacity >
                <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
                    <Text style={styles.title1}>
-                Duplicate Job
+                Include in Quote and cut list
                    </Text>
-                  <Icon
-               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+                <View style={{ backgroundColor: isEnabled ? colors.greyColor : colors.whiteColor, borderRadius: 20 }}>
+               <Switch
+                 ios_backgroundColor={colors.greyColor}
+                thumbColor={isEnabled ? colors.whiteColor : colors.greyColor}
+                 trackColor={{true: colors.greyColor, false: colors.greyColor}}
+                 onValueChange={toggleSwitch}
+                 value={isEnabled}
+                />
+              </View>
                 </View>
                </TouchableOpacity>
                <View style={styles.line3}/>
           </KeyboardAwareScrollView>
           </View>
           <Footer 
-          left={"Create Quote"} 
-          rightIcon 
-          center={"Send Cut List"}
-          leftOnPress={()=>navigation.navigate("CreateQuote")}/>
-          <RoomModal isVisible={visible} hide={()=>setVisible(false)}/>
+          leftOnPress={()=>navigation.navigate('CreateQuote')}
+          left={"Create Room Quote"} 
+          rightIcon />
         </>
     )
 }
-export default MapClient;
+export default Room;

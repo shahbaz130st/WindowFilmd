@@ -13,6 +13,8 @@ import CreateQuote from "../screens/CreateQuote/CreateQuote";
 import SelectRoom from "../screens/CreateQuote/SelectRoom";
 import NewQuote from "../screens/NewQuote/NewQuote";
 import TintFilms from "../screens/TintFilms/TintFilms";
+import Room from "../screens/Room/Room";
+import Windows from "../screens/Windows/Windows";
 
 const OnBoardingStack = createNativeStackNavigator();
 
@@ -32,6 +34,8 @@ const OnBoarding = () => {
             <OnBoardingStack.Screen name="SelectRoom" component={SelectRoom} />
             <OnBoardingStack.Screen name="NewQuote" component={NewQuote} />
             <OnBoardingStack.Screen name="TintFilms" component={TintFilms} />
+            <OnBoardingStack.Screen name="Room" component={Room} />
+            <OnBoardingStack.Screen name="Windows" component={Windows} />
         </OnBoardingStack.Navigator>
     )
 }
