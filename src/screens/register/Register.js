@@ -49,7 +49,7 @@ const Register = () => {
 
       const signUpUser = () => {
         auth()
-        .createUserWithEmailAndPassword('jane.doe@example.com', 'SuperSecretPassword!')
+        .createUserWithEmailAndPassword('shahbaz130@gmail.com', 'SuperSecretPassword!')
         .then(() => {
           console.log('User account created & signed in!');
         })

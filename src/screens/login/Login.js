@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Text, TouchableOpacity,Image } from "react-native";
+import { View, Text, TouchableOpacity,Image , Alert } from "react-native";
 import { styles } from "./Login.style";
 import InputField from "../../components/InputField";
 import { colors } from "../../themes/colors";
@@ -9,11 +9,27 @@ import Button from "../../components/Button";
 import LoginFunction from "./Login.function";
 import Loader from "../../utils/Loader";
 import { useNavigation } from "@react-navigation/native";
+
+import auth from '@react-native-firebase/auth';
+
 const Login = (props) => {
-    const [email, setEmail] = useState("")
-    const [password, setPassword] = useState("")
+    const [email, setEmail] = useState("shahbaz130@gmail.com")
+    const [password, setPassword] = useState("SuperSecretPassword!")
     const navigation=useNavigation()
     const [loading, data, error, loginApiCall, loginValidation] = LoginFunction(props)
+
+    const __doSingIn = async () => {
+        try {
+          let response = await auth().signInWithEmailAndPassword(email, password)
+          if (response && response.user) {
+            Alert.alert("Success ✅", "Authenticated successfully")
+          }
+        } catch (e) {
+          console.error(e.message)
+        }
+      }
+
+
     return (
         <View style={styles.mainView}>
             <Image source={require('../../assets/images/splash.jpeg')} style={styles.image}/>
@@ -62,7 +78,8 @@ const Login = (props) => {
                             textStyle={commonStyles.textStyle}
                             text={"LogIn"}
                             onPress={() => {
-                                props.navigation.navigate("Landing")
+                                __doSingIn();
+                                // props.navigation.navigate("Landing")
                                 // loginValidation(email, password)
                             }}
                         />
