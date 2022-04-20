@@ -78,8 +78,8 @@ const Login = (props) => {
                             textStyle={commonStyles.textStyle}
                             text={"LogIn"}
                             onPress={() => {
-                                __doSingIn();
-                                // props.navigation.navigate("Landing")
+                                // __doSingIn();
+                                props.navigation.navigate("Landing")
                                 // loginValidation(email, password)
                             }}
                         />
