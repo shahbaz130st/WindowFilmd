@@ -10,7 +10,7 @@ const InputField = (props) => {
 
     const handleInputBlur = () => setIsFocused(false)
     return (
-        <View style={[props.containerStyle, { borderColor: isFocused ? colors.primaryColor : colors.greyColor }]}>
+        <View style={[props.containerStyle, { borderColor: isFocused ? colors.primaryColor : colors.lightGraay }]}>
             {!_.isNil(props.image) &&
                 <View style={props.imageViewStyle}>
                     <Image style={props.imageStyle} source={props.image} />

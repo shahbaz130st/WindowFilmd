@@ -14,6 +14,7 @@ export const colors={
     bodyTextColor:"#858585",
     greyColor:"#808080",
     lightGreyColor:"#F2F4F5",
+    lightGraay:'#D3D3D3',
     biggerButtonColor:"#F4F7FF",
     greanColor:"#02935F",
     redColor:"#FF5648",
@@ -23,5 +24,5 @@ export const colors={
     pendingColor:"#515151",
     darkGray:"#404040",
     darkred:'#BE0032',
-    blue:"#0000FF"
+    blue:"#0096FF"
 }

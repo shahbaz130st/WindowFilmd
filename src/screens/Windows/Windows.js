@@ -40,7 +40,7 @@ const Windows = (props) => {
   const route=useRoute()
     return (
         <>
-          <Header rightIcon backArrow leftOnPress={()=>navigation.goBack()} left={'Room'} center={"Unnamed wwindow"}/>
+          <Header rightIcon backArrow leftOnPress={()=>navigation.goBack()} left={'Room'} center={"Unnamed window"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
             <View style={styles.line}/>
@@ -51,7 +51,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                     />
