@@ -64,7 +64,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setJob(text)}
                 value={job}
                     />
@@ -78,7 +78,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setAddress(text)}
                 value={address}
                     />
@@ -92,7 +92,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setState(text)}
                 value={state}
                     />
@@ -164,7 +164,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setPhone(text)}
                 value={phone}
                     />
@@ -209,7 +209,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setAddress1(text)}
                 value={address1}
                     />
@@ -222,7 +222,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setState1(text)}
                 value={state1}
                     />
@@ -264,7 +264,7 @@ const Windows = (props) => {
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
                 containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
-                inputStyle={commonStyles.passwordInputinnerStyle}
+                inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setLadder(text)}
                 value={ladder}
                     />
