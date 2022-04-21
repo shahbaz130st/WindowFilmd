@@ -1,12 +1,16 @@
 import { useState } from "react";
-import axios from "axios";
 import { reg } from "../../utils/ValidationConstants";
-import constant from "../../utils/ApiConstants";
+import auth from '@react-native-firebase/auth';
+import { Alert } from "react-native";
+import { StackActions } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { signIn } from "../../Store/ActionsCreator";
+import firestore from '@react-native-firebase/firestore';
 
 export default LoginFunction = (props) => {
-    const [data, setData] = useState(null);
+    const mainApp = StackActions.replace("OnBoarding")
+    const dispatch=useDispatch()
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
     const loginValidation = (email, password) => {
          if (email === "") {
             alert("Email is required")
@@ -32,29 +36,30 @@ export default LoginFunction = (props) => {
     }
     const loginApiCall = async (email, password) => {
         setLoading(true)
-        var config = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-        };
-        const data = {
-            "email": email/* "xobac26042@royins.com" */,
-            "password": password/* "12345678" */
-        }
-        console.log(constant.signin, data)
-        axios
-            .post(constant.signin, data, config)
-            .then(function (response) {
-                setLoading(false)
-                console.log(response.data.status)
-                if (response.data.status == 200) {
-                    alert(response.data.message)
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-                setLoading(false)
-            });
+        try {
+            let response = await auth().signInWithEmailAndPassword(email, password)
+            if (response && response.user) {
+              Alert.alert("Success ✅", "Authenticated successfully")
+              firestore()
+              .collection('Users')
+              .doc(response.user.uid)
+              .onSnapshot(documentSnapshot => {
+                console.log('User data: ', documentSnapshot.data());
+              });
+              setLoading(false)
+              dispatch(signIn({userData:response?.user,isLogin:'true'}))
+              props.navigation.dispatch(mainApp)
+            }
+          } catch (error) {
+            if (error.code === 'auth/user-not-found') {
+                Alert.alert("Error",'Email address is invalid')
+              }
+          
+              if (error.code === 'auth/wrong-password') {
+                Alert.alert("Error",'Password is invalid')
+              }
+            setLoading(false)
+          }
     }
-    return [loading, data, error, loginApiCall, loginValidation];
+    return [loading, loginValidation];
 };

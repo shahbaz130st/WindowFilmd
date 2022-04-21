@@ -17,14 +17,21 @@ import Room from "../screens/Room/Room";
 import Windows from "../screens/Windows/Windows";
 
 const OnBoardingStack = createNativeStackNavigator();
+const SignInStack = createNativeStackNavigator();
 
-const OnBoarding = () => {
+function SignInScreens() {
     return (
-        <OnBoardingStack.Navigator screenOptions={{ headerShown: false }}>
+        <SignInStack.Navigator screenOptions={{ headerShown: false }} initialRouteName={"Splash"}>
             <OnBoardingStack.Screen name="Splash" component={Splash} />
-            <OnBoardingStack.Screen name="Landing" component={Landing} />
             <OnBoardingStack.Screen name="Login" component={Login} />
             <OnBoardingStack.Screen name="Register" component={Register} />
+        </SignInStack.Navigator>
+    )
+}
+function OnBoarding() {
+    return (
+        <OnBoardingStack.Navigator screenOptions={{ headerShown: false }}>
+            <OnBoardingStack.Screen name="Landing" component={Landing} />
             <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} />
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />
@@ -39,4 +46,5 @@ const OnBoarding = () => {
         </OnBoardingStack.Navigator>
     )
 }
-export default OnBoarding;
+
+export {OnBoarding,SignInScreens};

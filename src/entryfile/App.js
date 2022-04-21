@@ -5,7 +5,9 @@ import { strings } from "../localization/i18n";
 // import Preference from "react-native-preference";
 // import RNRestart from "react-native-restart";
 import Routing from "../navigations/Routing.stack";
-// import { Provider } from 'react-redux';
+import { persistor, store } from "../Store";
+import { PersistGate } from 'redux-persist/integration/react';
+import { Provider } from 'react-redux';
 // import configureStore from '../store/index';
 
 // const store = configureStore()
@@ -13,7 +15,8 @@ import Routing from "../navigations/Routing.stack";
 const App = () => {
     LogBox.ignoreAllLogs();
     return (
-        // <Provider store={store}>
+        <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
         <View style={styles.mainView}>
             <StatusBar
                 translucent={true}
@@ -35,7 +38,8 @@ const App = () => {
             </TouchableOpacity> */}
             <Routing />
         </View>
-        // </Provider>
+        </PersistGate>
+        </Provider>
     )
 }
 export default App;

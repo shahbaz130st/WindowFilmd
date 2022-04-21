@@ -8,26 +8,11 @@ import CustomCheckBox from "../../components/CustomCheckBox";
 import Button from "../../components/Button";
 import LoginFunction from "./Login.function";
 import Loader from "../../utils/Loader";
-import { useNavigation } from "@react-navigation/native";
-
-import auth from '@react-native-firebase/auth';
 
 const Login = (props) => {
-    const [email, setEmail] = useState("shahbaz130@gmail.com")
-    const [password, setPassword] = useState("SuperSecretPassword!")
-    const navigation=useNavigation()
-    const [loading, data, error, loginApiCall, loginValidation] = LoginFunction(props)
-
-    const __doSingIn = async () => {
-        try {
-          let response = await auth().signInWithEmailAndPassword(email, password)
-          if (response && response.user) {
-            Alert.alert("Success ✅", "Authenticated successfully")
-          }
-        } catch (e) {
-          console.error(e.message)
-        }
-      }
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [loading, loginValidation] = LoginFunction(props)
 
 
     return (
@@ -36,7 +21,7 @@ const Login = (props) => {
                 <View style={[commonStyles.innerViewStyle]} >
                     <InputField
                         placeholder={"Email"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={commonStyles.inputContainerStyle}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setEmail(text)}
@@ -48,7 +33,7 @@ const Login = (props) => {
                     <InputField
                         placeholder={"Password"}
                         autoComplete={"password"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.passwordInputinnerStyle}
                         secureTextEntry={true}
@@ -68,7 +53,7 @@ const Login = (props) => {
                        color: colors.tintColor,
                       fontSize: 14,
                      }}
-                     onPress={() => navigation.navigate("Register")}
+                     onPress={() => props.navigation.navigate("Register")}
                      >
                   {'Sign Up'}
                   </Text>
@@ -79,8 +64,8 @@ const Login = (props) => {
                             text={"LogIn"}
                             onPress={() => {
                                 // __doSingIn();
-                                props.navigation.navigate("Landing")
-                                // loginValidation(email, password)
+                                // props.navigation.dispatch(mainApp)
+                                loginValidation(email, password)
                             }}
                         />
             <Loader visible={loading} />

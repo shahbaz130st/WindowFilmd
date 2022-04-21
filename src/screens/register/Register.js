@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text,Image } from "react-native";
+import { View, Text,Image, Alert } from "react-native";
 import { styles } from "./Register.style";
 import { strings } from "../../localization/i18n";
 import InputField from "../../components/InputField";
@@ -13,11 +13,12 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview'
 import Loader from "../../utils/Loader";
 import { useNavigation } from "@react-navigation/native";
 
-import auth from '@react-native-firebase/auth';
+import auth, { firebase } from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
 
 
 
-const Register = () => {
+const Register = (props) => {
     const [purchaser, setPurchaser] = useState("")
     const [email, setEmail] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
@@ -25,46 +26,69 @@ const Register = () => {
     const [instalationAddress, setInstalationAddress] = useState("")
     const [city, setCity] = useState("")
     const [state, setState] = useState("")
-    const [open, setOpen] = useState(false);
-    const [value, setValue] = useState([]);
-    const [items, setItems] = useState([]);
-    const [initializing, setInitializing] = useState(true);
-    const [user, setUser] = useState();
+    const [password, setPassword] = useState("")
+    const [rePassword, setRePassword] = useState("")
+    const [value, setValue] = useState('');
+    const [check1, setCheck1] = useState(false);
+    const [check2, setCheck2] = useState(false);
     const navigation=useNavigation()
 
-    const [loading, data, error, fetchProfessionApiCall, registerValidation] = RegisterFunction()
+    const [loading, registerValidation] = RegisterFunction(props)
 
-    // useEffect(() => {
-    //     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    //     return subscriber; // unsubscribe on unmount
-    //   }, []);
+    const onChange=(i)=>{
+        switch (i) {
+            case 1:
+                setCheck2(false)
+                setCheck1(true)
+                setValue('Commercial')
+                break;
+            case 2:
+                setCheck1(false)
+                setCheck2(true)
+                setValue('Residential')
+                break;
+        
+            default:
+                setCheck1(false)
+                setCheck2(false)
+                setValue('')
+                break;
+        }
+    }
 
+      const firestorer = async(userCredentials) => {
+          alert(';alert')
+        firestore().collection('Users').add({
+            name: '12',
+            phone: '6554',
+            address: 'address',
+            email: 'jabbar123@gmail.com',
+            user_id: userCredentials.user.uid
+          }).then((res) => {
+          console.log('res=====>>',res)
+          }).catch((e)=>console.log('erroorr==>>',e))
+      }
 
-    //   function onAuthStateChanged(user) {
-    //     setUser(user);
-    //     if (initializing) setInitializing(false);
-    //   } 
-
-    //   if (initializing) return null;
-
-      const signUpUser = () => {
-        auth()
-        .createUserWithEmailAndPassword('shahbaz130@gmail.com', 'SuperSecretPassword!')
-        .then(() => {
-          console.log('User account created & signed in!');
-        })
-        .catch(error => {
+        const signUpUser = async() => {
+            auth().createUserWithEmailAndPassword('jabbar20@gmail.com', 'Password')
+              .then(userCredentials => {
+                  console.log('data==>>',userCredentials)
+                  firestorer(userCredentials)
+                alert("User Successfuly Registered")
+                navigation.navigate("Login")
+              })
+              .catch(error => {
           if (error.code === 'auth/email-already-in-use') {
             console.log('That email address is already in use!');
           }
-      
+        
           if (error.code === 'auth/invalid-email') {
-            console.log('That email address is invalid!');
-          }
-      
-          console.error(error);
-        });
-      }
+                console.log('That email address is invalid!');
+              }
+            
+              console.error(error);
+            });
+        }
       
     return (
         <View style={styles.mainView}>
@@ -75,7 +99,7 @@ const Register = () => {
                 <View style={[commonStyles.innerViewStyle]} >
                     <InputField
                         placeholder={"Purchaser Name"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={commonStyles.inputContainerStyle}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setPurchaser(text)}
@@ -86,7 +110,7 @@ const Register = () => {
                     />
                     <InputField
                         placeholder={"Contact Person"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setContactPerson(text)}
@@ -97,7 +121,7 @@ const Register = () => {
                     />
                     <InputField
                         placeholder={"Phone"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setPhoneNumber(text)}
@@ -108,7 +132,7 @@ const Register = () => {
                     />
                     <InputField
                         placeholder={"Email"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         // secureTextEntry={true}
@@ -119,8 +143,26 @@ const Register = () => {
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <InputField
+                        placeholder={"Password"}
+                        placeholderTextColor={colors.placeholderColor}
+                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
+                        inputStyle={commonStyles.passwordInputinnerStyle}
+                        secureTextEntry={true}
+                        onChangeText={(text) => setPassword(text)}
+                        value={password}
+                    />
+                    <InputField
+                        placeholder={"Re-enter Password"}
+                        placeholderTextColor={colors.placeholderColor}
+                        containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
+                        inputStyle={commonStyles.passwordInputinnerStyle}
+                        secureTextEntry={true}
+                        onChangeText={(text) => setRePassword(text)}
+                        value={rePassword}
+                    />
+                    <InputField
                         placeholder={"Instalation Address"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         // secureTextEntry={true}
@@ -132,7 +174,7 @@ const Register = () => {
                     />
                     <InputField
                         placeholder={"City/Suburb"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setCity(text)}
@@ -143,7 +185,7 @@ const Register = () => {
                     />
                     <InputField
                         placeholder={"State"}
-                        placeholderTextColor={colors.blackTextColor}
+                        placeholderTextColor={colors.placeholderColor}
                         containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
                         inputStyle={commonStyles.inputInnerStyle}
                         onChangeText={(text) => setState(text)}
@@ -153,8 +195,8 @@ const Register = () => {
                         sterickTextStyle={commonStyles.sterickTextStyle}
                     />
                     <Text style={styles.typeText}>Type</Text>
-                    <CustomCheckBox label1={"Commercial"}/>
-                    <CustomCheckBox label1={"Residential"}/>
+                    <CustomCheckBox isChecked={check1} onChange={()=>onChange(1)} label1={"Commercial"}/>
+                    <CustomCheckBox isChecked={check2} onChange={()=>onChange(2)} label1={"Residential"}/>
                     <Text
                        style={{
                        marginVertical: 10,
@@ -177,8 +219,8 @@ const Register = () => {
                             textStyle={commonStyles.textStyle}
                             text={"SignUp"}
                             onPress={() => {
-                                signUpUser();
-                                // registerValidation( email, phoneNumber,value)
+                                // signUpUser();
+                                registerValidation(purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password, rePassword,value)
                             }}
                         />
                     </View>

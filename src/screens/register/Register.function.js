@@ -1,38 +1,24 @@
 import { useState } from "react";
-import axios from "axios";
 import { reg } from "../../utils/ValidationConstants";
-import constant from "../../utils/ApiConstants";
+import auth from '@react-native-firebase/auth';
+import firestore from '@react-native-firebase/firestore';
+import { useNavigation } from "@react-navigation/native";
 
 export default RegisterFunction = (props) => {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false)
-    const [error, setError] = useState(null);
-    const fetchProfessionApiCall = async () => {
-        setLoading(true)
-        var config = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-        };
-        console.log(constant.getProfession)
-        axios.get(constant.getProfession, config)
-            .then(function (response) {
-                setLoading(false)
-                console.log(response.data.status)
-                if (response.data.status == 200) {
-                    setData(response.data.data)
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-                setLoading(false)
-                // AlertComponent({ msg: error.message, type: "error", title: "Error" })
-            });
-    }
-    const registerValidation = (legalName, email, phoneNumber, password, confirmPassword, businessName, location, value) => {
-        if (legalName === "") {
-            alert("Legal name is required")
+    const navigation=useNavigation()
+  
+    const registerValidation = (purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password,rePassword,value) => {
+        if (purchaser === "") {
+            alert("Purchaser name is required")
             // AlertComponent({ msg: "Email/Mobile Number is required", title: "Error", type: "error" })
+        }else if (contactPerson == "") {
+            alert("Contact Person name is required")
+            // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
+        }else if (phoneNumber == "") {
+            alert("Phone number is required")
+            // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
         }
         else if (email === "") {
             alert("Email is required")
@@ -42,10 +28,7 @@ export default RegisterFunction = (props) => {
             alert("Email is invalid")
             // AlertComponent({ msg: "Email is invalid", title: "Error", type: "error" })
         }
-        else if (phoneNumber == "") {
-            alert("Phone number is required")
-            // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
-        }
+        
         else if (password == "") {
             alert("Password is required")
             // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
@@ -54,63 +37,75 @@ export default RegisterFunction = (props) => {
             alert("Password must be 8 characters")
             // AlertComponent({ msg: "Password must be 8 characters", type: "error", title: "Error" })
         }
-        else if (confirmPassword == "") {
+        else if (rePassword == "") {
             alert("Confirm Password is required")
             // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
         }
-        else if (confirmPassword.length <= 7) {
+        else if (rePassword.length <= 7) {
             alert("Confirm password must be 8 characters")
             // AlertComponent({ msg: "Password must be 8 characters", type: "error", title: "Error" })
         }
-        else if (confirmPassword !== password) {
+        else if (rePassword !== password) {
             alert("Confirm password does not match with password")
             // AlertComponent({ msg: "Password must be 8 characters", type: "error", title: "Error" })
         }
-        else if (businessName == "") {
-            alert("Business name is required")
-            // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
-        }
-        else if (location == "") {
+        
+        else if (instalationAddress == "") {
             alert("location is required")
             // AlertComponent({ msg: "Password is required", type: "error", title: "Error" })
         }
-        else if (value.length == 0) {
-            alert("Select atleast on profession")
+        else if (city == '') {
+            alert("City name is required")
+        }
+        else if (state == '') {
+            alert("state name is required")
+        }
+        else if (value == '') {
+            alert("Type is required")
         }
         else {
             // loginApiCall(email, password)
-            registerApiCall(legalName, email, phoneNumber, password, confirmPassword, businessName, location, value);
+            registerApiCall(purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password,rePassword,value);
+            console.log(purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password,rePassword,value)
         }
     }
-    const registerApiCall = async (legalName, email, phoneNumber, password, confirmPassword, businessName, location, value) => {
+    const firestorer = async(userCredentials,purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state,value) => {
+      console.log(userCredentials.user.uid)
+        firestore().collection('Users').add({
+          purchaser_name: purchaser,
+          phone: phoneNumber,
+          instalation_Address: instalationAddress,
+          email: email,
+          contactPerson:contactPerson,
+          city:city,
+          state:state,
+          Type_of_property:value,
+          user_id: userCredentials.user.uid
+        }).then((res) => {
+        console.log('res=====>>',res)
+        }).catch((e)=>console.log('erroorr==>>',e))
+    }
+    const registerApiCall = async (purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password,rePassword,value) => {
         setLoading(true)
-        var config = {
-            headers: {
-                "Content-Type": "application/json"
-            },
-        };
-        const data = {
-            "fullName": legalName,
-            "email": email/* "xobac26042@royins.com" */,
-            "password": password/* "12345678" */,
-            "location": location,
-            "businessName": businessName,
-            "profession": value.toString()
-        }
-        console.log(constant.registration, data)
-        axios
-            .post(constant.registration, data, config)
-            .then(function (response) {
-                setLoading(false)
-                console.log(response.data.status)
-                if (response.data.status == 200) {
-                    alert(response.data.message)
-                }
-            })
-            .catch(function (error) {
-                console.log(error)
-                setLoading(false)
+        auth().createUserWithEmailAndPassword(email, password)
+              .then(userCredentials => {
+                  firestorer(userCredentials,purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state,value)
+                  setLoading(false)
+                alert("User Successfuly Registered")
+                navigation.navigate("Login")
+              })
+              .catch(error => {
+          if (error.code === 'auth/email-already-in-use') {
+            console.log('That email address is already in use!');
+          }
+        
+          if (error.code === 'auth/invalid-email') {
+                console.log('That email address is invalid!');
+              }
+            
+              console.error(error);
+              setLoading(false)
             });
     }
-    return [loading, data, error, fetchProfessionApiCall, registerValidation];
+    return [loading, registerValidation];
 };

@@ -7,7 +7,11 @@ import Footer from "../../components/Footer";
 import { Icon } from "@rneui/base";
 import { colors } from "../../themes/colors";
 import Quote from "../../components/Quotes";
-import { useNavigation } from "@react-navigation/native";
+import { StackActions, useNavigation } from "@react-navigation/native";
+import { useDispatch } from "react-redux";
+import { signOut } from "../../Store/ActionsCreator";
+import auth from '@react-native-firebase/auth';
+
 const Landing = (props) => {
   const data=[
     {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:1},
@@ -16,9 +20,17 @@ const Landing = (props) => {
     {Title:'KBSC job center2',subTitle:"quote 27",place:'KBSC in khiyali',date:'last modified:2/14/21',id:4}
   ]
   const navigation =useNavigation()
+  const dispatch=useDispatch()
+  const mainApp = StackActions.replace("SignInScreens")
+  const Logout=()=>{
+    auth().signOut()
+    dispatch(signOut())
+    props.navigation.dispatch(mainApp)
+  }
+
     return (
         <>
-          <Header left={"Help"} right={"Map"} rightOnPress={()=>navigation.navigate('Map')} center={"22 Quotes"}/>
+          <Header left={"Log out"} right={"Map"} leftOnPress={Logout} rightOnPress={()=>navigation.navigate('Map')} center={"22 Quotes"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
             <TouchableOpacity onPress={()=>navigation.navigate('BrowseFilms')}>
