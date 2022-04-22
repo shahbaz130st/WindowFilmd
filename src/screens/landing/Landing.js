@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { styles } from "./Landing.style";
@@ -8,7 +8,7 @@ import { Icon } from "@rneui/base";
 import { colors } from "../../themes/colors";
 import Quote from "../../components/Quotes";
 import { StackActions, useNavigation } from "@react-navigation/native";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { signOut } from "../../Store/ActionsCreator";
 import auth from '@react-native-firebase/auth';
 

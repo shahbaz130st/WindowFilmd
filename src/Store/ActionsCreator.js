@@ -1,4 +1,4 @@
-import { SIGN_IN, SIGN_OUT,CHANGE_PRIMARY_THEME,CHANGE_SECONDARY_THEME,CHANGE_NOTIFICATION_COUNT, LEADSDATA, DEALSDATA, CONTACTDATA } from "./Actions";
+import { SIGN_IN, SIGN_OUT,REGISTERDATA } from "./Actions";
 
 export const signIn = (user) => {
     return {
@@ -7,22 +7,11 @@ export const signIn = (user) => {
         isLogin: user.isLogin,
     }
 }
-export const LeadsData = (data) => {
+
+export const registerData = (data) => {
     return {
-        type: LEADSDATA,
-        Data: data.LeadsData
-    }
-}
-export const DealData = (data) => {
-    return {
-        type: DEALSDATA,
-        Data: data.DealData
-    }
-}
-export const ContactData = (data) => {
-    return {
-        type: CONTACTDATA,
-        Data: data.contactsData
+        type: REGISTERDATA,
+        Data: data.register
     }
 }
 
@@ -31,24 +20,5 @@ export const signOut = () => {
         type: SIGN_OUT,
         user: null,
         isLogin: false
-    }
-}
-export const setPrimaryColor = (primaryColor) => {
-    return {
-        type: CHANGE_PRIMARY_THEME,
-        primaryColor: primaryColor
-    }
-}
-
-export const setSecondaryColor = (secondaryColor) => {
-    return {
-        type: CHANGE_SECONDARY_THEME,
-        secondaryColor: secondaryColor
-    }
-}
-export const setNotificationCount = (notificationCount) => {
-    return {
-        type: CHANGE_NOTIFICATION_COUNT,
-        notificationCount: notificationCount
     }
 }

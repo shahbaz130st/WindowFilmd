@@ -4,7 +4,7 @@ import auth from '@react-native-firebase/auth';
 import { Alert } from "react-native";
 import { StackActions } from "@react-navigation/native";
 import { useDispatch } from "react-redux";
-import { signIn } from "../../Store/ActionsCreator";
+import { registerData, signIn } from "../../Store/ActionsCreator";
 import firestore from '@react-native-firebase/firestore';
 
 export default LoginFunction = (props) => {
@@ -36,35 +36,28 @@ export default LoginFunction = (props) => {
   }
   const loginApiCall = async (email, password) => {
     setLoading(true)
-    try {
-      let response = await auth().signInWithEmailAndPassword(email, password)
-      if (response && response.user) {
-        console.log(response.user)
+    console.log(email)
+      auth()
+      .signInWithEmailAndPassword(email, password).then((response)=>{
+        if (response && response.user) {
+          console.log(response.user.uid)
         Alert.alert("Success ✅", "Authenticated successfully")
-        // firestore()
-        //   .collection('Users')
-        //   .doc("hNcpRolSQGVMRCJ5MqsjQUL9OWq2")
-        //   .get()
-        //   .then(documentSnapshot => {
-        //     console.log('User exists: ', documentSnapshot.exists);
-
-        //     if (documentSnapshot.exists) {
-        //       console.log('User data: ', documentSnapshot.data());
-        //     }
-        //   });
-        // const user = await firestore().collection('Users').doc(response.user.uid).get();
-        // let data = await firestore()
-        //   .collection('Users')
-        //   .doc(response.user.uid)
-        // .onSnapshot(documentSnapshot => {
-        //   console.log('User data: ', documentSnapshot.data());
-        // });
-        console.log(user)
-        setLoading(false)
-        // dispatch(signIn({userData:response?.user,isLogin:'true'}))
-        // props.navigation.dispatch(mainApp)
-      }
-    } catch (error) {
+        firestore()
+          .collection('Users')
+          .doc(response.user.uid)
+          .get()
+          .then(documentSnapshot => {            
+            if (documentSnapshot.exists) {
+              console.log('User data: ', documentSnapshot.data());
+            }
+            dispatch(registerData({register:documentSnapshot.data()}))
+          });
+          setLoading(false)
+          dispatch(signIn({userData:response?.user,isLogin:'true'}))
+          props.navigation.dispatch(mainApp)
+        }
+      })
+      .catch(error => {
       if (error.code === 'auth/user-not-found') {
         Alert.alert("Error", 'Email address is invalid')
       }
@@ -73,7 +66,7 @@ export default LoginFunction = (props) => {
         Alert.alert("Error", 'Password is invalid')
       }
       setLoading(false)
-    }
+    })
   }
   return [loading, loginValidation];
 };

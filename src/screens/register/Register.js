@@ -55,41 +55,6 @@ const Register = (props) => {
                 break;
         }
     }
-
-      const firestorer = async(userCredentials) => {
-          alert(';alert')
-        firestore().collection('Users').add({
-            name: '12',
-            phone: '6554',
-            address: 'address',
-            email: 'jabbar123@gmail.com',
-            user_id: userCredentials.user.uid
-          }).then((res) => {
-          console.log('res=====>>',res)
-          }).catch((e)=>console.log('erroorr==>>',e))
-      }
-
-        const signUpUser = async() => {
-            auth().createUserWithEmailAndPassword('jabbar20@gmail.com', 'Password')
-              .then(userCredentials => {
-                  console.log('data==>>',userCredentials)
-                  firestorer(userCredentials)
-                alert("User Successfuly Registered")
-                navigation.navigate("Login")
-              })
-              .catch(error => {
-          if (error.code === 'auth/email-already-in-use') {
-            console.log('That email address is already in use!');
-          }
-        
-          if (error.code === 'auth/invalid-email') {
-                console.log('That email address is invalid!');
-              }
-            
-              console.error(error);
-            });
-        }
-      
     return (
         <View style={styles.mainView}>
             <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1, justifyContent: "center" }} showsVerticalScrollIndicator={false} >

@@ -70,8 +70,9 @@ export default RegisterFunction = (props) => {
         }
     }
     const firestorer = async(userCredentials,purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state,value) => {
-      console.log(userCredentials.user.uid)
-        firestore().collection('Users').add({
+      console.log("user",userCredentials.user.uid)
+        firestore().collection('Users').doc(userCredentials.user.uid)
+        .set({
           purchaser_name: purchaser,
           phone: phoneNumber,
           instalation_Address: instalationAddress,
@@ -82,8 +83,9 @@ export default RegisterFunction = (props) => {
           Type_of_property:value,
           user_id: userCredentials.user.uid
         }).then((res) => {
-        console.log('res=====>>',res)
+        console.log('res=====>>',res,'id',res)
         }).catch((e)=>console.log('erroorr==>>',e))
+        console.log("user",userCredentials.user.uid)
     }
     const registerApiCall = async (purchaser, email, phoneNumber, contactPerson, instalationAddress, city, state, password,rePassword,value) => {
         setLoading(true)
