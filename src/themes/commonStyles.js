@@ -20,9 +20,18 @@ const styles = StyleSheet.create(
             alignItems: "center",
             borderRadius: phoneScreen.height * 1 / 100,
         },
+        buttonStyle1: {
+            marginVertical: 8,
+            width: "40%",
+            height: Platform.OS === "android" ? phoneScreen.height * 7 / 100 : phoneScreen.height * 6 / 100,
+            alignItems: "center",
+            borderRadius: phoneScreen.height * 1 / 100,
+            marginHorizontal:10,
+            backgroundColor:colors.whiteColor
+        },
         buttonTextStyle: {
             textAlign: "center",
-            color: colors.secondaryColor,
+            color: colors.greyColor,
             fontWeight: "500",
             fontSize: 16
         },
@@ -52,9 +61,9 @@ const styles = StyleSheet.create(
             width: "90%",
             height: Platform.OS === "android" ? phoneScreen.height * 7 / 100 : phoneScreen.height * 6 / 100,
             borderRadius: phoneScreen.height * 1 / 100,
-            paddingHorizontal: 25,
+            paddingHorizontal: 10,
             borderColor: colors.greyColor,
-            borderWidth: 2,
+            borderWidth: 1,
             flexDirection: "row",
             justifyContent:'center',
             alignItems:'center'

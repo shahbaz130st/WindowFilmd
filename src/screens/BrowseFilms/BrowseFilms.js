@@ -2,13 +2,14 @@ import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { styles } from "./BrowseFilmsStyle";
-import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import commonStyles from "../../themes/commonStyles";
 import { colors } from "../../themes/colors";
 import { useNavigation } from "@react-navigation/native";
 import QuoteItem from "../../components/QuoteItem";
 import InputField from "../../components/InputField";
+import Header1 from "../../components/MainHeader";
+
 const BrowseFilms = (props) => {
   const data=[
     {Title:'Night Owl (4.0)',id:1},
@@ -26,20 +27,19 @@ const BrowseFilms = (props) => {
 
     return (
         <>
-          <Header rightIcon={true} backArrow={true} leftOnPress={()=>navigation.goBack()} left={"Quotes"} center={"Browse Tint Films"}/>
+          <Header1 left={"Window Films"}/>
           <View style={styles.mainView}>
-          <KeyboardAwareScrollView contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
-            <View style={{justifyContent:'center',alignItems:"center",backgroundColor:colors.greyColor}}>
+          <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
             <InputField
               placeholder={"Search films"}
-              placeholderTextColor={colors.blackTextColor}
-              containerStyle={[commonStyles.inputContainerStyle1]}
+              placeholderTextColor={colors.placeholderColor}
+              containerStyle={[commonStyles.inputContainerStyle1,{width: "100%"}]}
               inputStyle={commonStyles.passwordInputinnerStyle}
               onChangeText={(text) => setPassword(text)}
               value={password}
+              search
               />
-            </View>
-            <View style={styles.line}/>
+              <Text style={{...styles.QouteText1,fontSize:20}}>BROWSE TINT FILMS</Text>
                <FlatList
                 data={data}
                 keyExtractor={item =>item.id}
@@ -48,14 +48,12 @@ const BrowseFilms = (props) => {
                 style={{ width: "100%" }}
                 renderItem={({ item, index }) => {
                   return (
-                  <View style={{padding:10}}>
+                    <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
                     <QuoteItem title={item.Title} onPress={()=>navigation.navigate('SingleFilms',{title:item.Title})}/>
-                    <View style={styles.line1}/>
                     </View>
                     )
                   }}/>
-                  <Text style={{...styles.QouteText,fontSize:20}}>DUAL REFLECTIVE FILMS</Text>
-                  <View style={styles.line3}/>
+                  <Text style={{...styles.QouteText1,fontSize:20}}>DUAL REFLECTIVE FILMS</Text>
                   <FlatList
                   data={data2}
                   keyExtractor={item =>item.id}
@@ -64,15 +62,28 @@ const BrowseFilms = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
-                    <View style={{padding:10}}>
+                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
                       <QuoteItem title={item.Title}/>
-                      <View style={styles.line1}/>
+                      </View>
+                      )}}
+                      />
+                  <Text style={{...styles.QouteText1,fontSize:20}}>DUAL REFLECTIVE FILMS</Text>
+                  <FlatList
+                  data={data2}
+                  keyExtractor={item =>item.id}
+                  showsVerticalScrollIndicator={false}
+                  removeClippedSubviews={false}
+                  style={{ width: "100%" }}
+                  renderItem={({ item, index }) => {
+                    return (
+                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
+                      <QuoteItem title={item.Title}/>
                       </View>
                       )}}
                       />
           </KeyboardAwareScrollView>
           </View>
-          <Footer />
+          {/* <Footer /> */}
         </>
     )
 }

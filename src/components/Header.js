@@ -13,12 +13,12 @@ const Header = (props) => {
             <Icon
                name='left' 
                type="antdesign" 
-               color={colors.whiteColor} 
-               size={25}
+               color={colors.primaryColor} 
+               size={22}
               />
                :null
             }
-            <Text style={styles.textHead}>
+            <Text style={{...styles.textHead,color:colors.primaryColor}}>
                 {props.left}
             </Text>
         </View>
@@ -56,14 +56,14 @@ export default Header;
 const styles = StyleSheet.create(
     {
         Head: {
-            backgroundColor: colors.darkGray,
+            backgroundColor: colors.whiteColor,
             alignItems: 'center',
             justifyContent: 'space-between',flexDirection:'row',
             padding:15,
         },textHead:{
-            fontSize:16,
-            fontWeight:'400',
-            color:colors.whiteColor
+            fontSize:17,
+            fontWeight:'500',
+            color:colors.darkGray
         }
     }
 )

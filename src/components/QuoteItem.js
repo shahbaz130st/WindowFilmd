@@ -28,7 +28,7 @@ export default QuoteItem;
 const styles = StyleSheet.create(
     {
         Head: {
-            padding:10,
+            padding:15,
         },title1:{
             fontSize:17,
             fontWeight:'500',

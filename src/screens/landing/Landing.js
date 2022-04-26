@@ -83,7 +83,7 @@ const Landing = (props) => {
                         /> 
           </KeyboardAwareScrollView>
           </View>
-          <Footer left={"About"} right={"Settings"}/>
+          {/* <Footer left={"About"} right={"Settings"}/> */}
         </>
     )
 }

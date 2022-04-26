@@ -3,13 +3,16 @@ import { View, Text, TouchableOpacity, FlatList } from "react-native";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 import { styles } from "./BrowseFilmsStyle";
 import Header from "../../components/Header";
-import Footer from "../../components/Footer";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import SingleFilmsItem from "../../components/SingleFilmsItem";
+import { colors } from "../../themes/colors";
+import Button from "../../components/Button";
+import commonStyles from "../../themes/commonStyles";
+
 const SingleFilms = (props) => {
   const data=[
-    {Title:'Group',subtitle:'',id:1},
-    {Title:'Sub-Group',subtitle:'',id:2},
+    {Title:'Group',subtitle:'-',id:1},
+    {Title:'Sub-Group',subtitle:'-',id:2},
     {Title:'Code',subtitle:'RO5678Cv',id:4},
     {Title:'Type',subtitle:'Interior',id:5}
   ]
@@ -32,12 +35,14 @@ const SingleFilms = (props) => {
   ]
   const route=useRoute()
   const navigation =useNavigation()
+  const [ongoing, setOngoing] = useState(true)
 
     return (
         <>
           <Header backArrow={true} rightOnPress={()=>navigation.navigate('DateSheet',{title:route.params.title})} leftOnPress={()=>navigation.goBack()} left={"Films"} right={"Datesheet"} center={route.params.title}/>
-          <View style={styles.mainView}>
+          <View style={{...styles.mainView}}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
+            <View style={{marginTop:15}}>
              <FlatList
                 data={data}
                 keyExtractor={item =>item.id}
@@ -46,10 +51,13 @@ const SingleFilms = (props) => {
                 style={{ width: "100%" }}
                 renderItem={({ item, index }) => {
                   return (
+                    <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
                     <SingleFilmsItem title={item.Title}
                     subtitle={item.subtitle}/>
+                    </View>
                     )
                   }}/>
+             </View>
                   <Text style={styles.QouteText1}>GLASS COMPATIBILTY</Text>
                   <FlatList
                   data={data2}
@@ -59,11 +67,13 @@ const SingleFilms = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
+                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
                         <SingleFilmsItem 
                         title={item.Title}
                         iconVisible={true}
                         name={item.name}
                         type={item.iconType}/>
+                        </View>
                       )}}
                       />
                   <Text style={styles.QouteText1}>FULL ROLE SIZES</Text>
@@ -75,14 +85,29 @@ const SingleFilms = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
+                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
                         <SingleFilmsItem 
                         title={item.Title}
                         subtitle={item.subtitle}/>
+                        </View>
                       )}}
                       />
           </KeyboardAwareScrollView>
           </View>
-          <Footer left={"Add to Order"} right={"Current Order"} />
+          <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
+            <Button
+            buttonStyle={[commonStyles.buttonStyle1,ongoing && styles.selectedbtn]}
+            textStyle={[commonStyles.buttonTextStyle, ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
+            onPress={() => setOngoing(true)}
+            text={"Add to Order"}
+            />
+            <Button
+            buttonStyle={[commonStyles.buttonStyle1,!ongoing && styles.selectedbtn,]}
+            onPress={() => setOngoing(false)}
+            textStyle={[commonStyles.buttonTextStyle,!ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
+            text={"Current Order"}
+            />
+          </View>
         </>
     )
 }

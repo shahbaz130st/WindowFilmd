@@ -3,7 +3,7 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGreyColor,
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
         backgroundColor:colors.greyColor
     },
     line1:{
-        height:0.2,
+        height:1,
         backgroundColor:colors.greyColor
     },
     line3:{
@@ -36,7 +36,9 @@ export const styles = StyleSheet.create({
     },
     QouteText1:{
         fontSize:16,
-        padding:15,
-        fontWeight:'500'
-    }
+        paddingVertical:15,
+        fontWeight:'500',
+        marginHorizontal:20
+    }, selectedbtn: { color: colors.whiteColor, backgroundColor: colors.primaryColor },
+
 })

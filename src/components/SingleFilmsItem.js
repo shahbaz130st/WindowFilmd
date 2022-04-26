@@ -43,7 +43,6 @@ const SingleFilmsItem = (props) => {
             </View>
             </View>
         </View>
-        <View style={styles.line}/>
         </TouchableOpacity>
     )
 
@@ -52,9 +51,9 @@ export default SingleFilmsItem;
 const styles = StyleSheet.create(
     {
         Head: {
-            padding:15,
+            padding:12,
         },title1:{
-            fontSize:15,
+            fontSize:16,
             fontWeight:'500',
             color:colors.blackTextColor
         },subtitle1:{

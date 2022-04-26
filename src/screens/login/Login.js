@@ -8,17 +8,25 @@ import CustomCheckBox from "../../components/CustomCheckBox";
 import Button from "../../components/Button";
 import LoginFunction from "./Login.function";
 import Loader from "../../utils/Loader";
+import LinearGradient from 'react-native-linear-gradient';
+import Svg, {ClipPath, Defs, G, Path} from "react-native-svg";
+import { SvgXml } from 'react-native-svg';
+import constants from "../../utils/ApiConstants";
 
 const Login = (props) => {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
     const [loading, loginValidation] = LoginFunction(props)
 
-
     return (
         <View style={styles.mainView}>
-            <Image source={require('../../assets/images/splash.jpeg')} style={styles.image}/>
-                <View style={[commonStyles.innerViewStyle]} >
+            <LinearGradient colors={[colors.whiteColor, colors.lightBlue]} style={{flex: 1,width:'100%'}}>
+            <SvgXml xml={constants.xml} width="100%" height="25%" />
+            <Image source={require('../../assets/images/splash1.png')} style={styles.image}/>
+                <View style={{flex:1,justifyContent:'center'}} >
+                    <View style={{flex:2,justifyContent:'flex-end'}}>
+                    <Text style={styles.headerText}>Login</Text>
+                    <View style={[commonStyles.innerViewStyle,{paddingBottom:20}]}>
                     <InputField
                         placeholder={"Email"}
                         placeholderTextColor={colors.placeholderColor}
@@ -39,36 +47,42 @@ const Login = (props) => {
                         secureTextEntry={true}
                         onChangeText={(text) => setPassword(text)}
                         value={password}
-                    />
+                        />
 
-                    </View>
+                        </View>
                     <Text
-                       style={{
-                       marginBottom: 20,
-                       fontSize: 14,
-                        }}>
-                     {"Don't have an account? "}
-                     <Text
-                    style={{
-                       color: colors.tintColor,
-                      fontSize: 14,
-                     }}
-                     onPress={() => props.navigation.navigate("Register")}
-                     >
-                  {'Sign Up'}
+                       style={styles.forgetText}>
+                     {"Forget Password?"}
+                    {/* //  onPress={() => props.navigation.navigate("Register")} */}
                   </Text>
-                  </Text>
+                  <View style={{justifyContent:'center',alignItems:'center'}}>
                         <Button
-                            buttonStyle={[commonStyles.buttonStyle, { backgroundColor: colors.primaryColor, width: "40%" }]}
-                            textStyle={commonStyles.textStyle}
-                            text={"LogIn"}
+                            buttonStyle={[commonStyles.buttonStyle, { backgroundColor: colors.primaryColor, width: "85%" }]}
+                            textStyle={[commonStyles.textStyle,{fontWeight:'bold'}]}
+                            text={"LOGIN"}
                             onPress={() => {
-                                // __doSingIn();
-                                // props.navigation.dispatch(mainApp)
                                 loginValidation(email, password)
                             }}
-                        />
+                            />
+                </View>
+                </View>
+                <View style={{justifyContent:'flex-end',flex:1}}>
+                    <Text
+                       style={styles.footerText}>
+                           {"Don't have an Account"}
+                  </Text>
+                  <View style={{justifyContent:'center',alignItems:'center',paddingBottom:20}}>
+                        <Button
+                            buttonStyle={[commonStyles.buttonStyle,styles.signUpBtntyle ]}
+                            textStyle={[commonStyles.buttonTextStyle,{fontWeight:'bold'}]}
+                            text={"SIGN UP"}
+                            onPress={() => props.navigation.navigate("Register")}
+                            />
+                </View>
+              </View>
+             </View>
             <Loader visible={loading} />
+            </LinearGradient>
         </View>
     )
 

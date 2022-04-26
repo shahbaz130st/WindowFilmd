@@ -15,9 +15,34 @@ import NewQuote from "../screens/NewQuote/NewQuote";
 import TintFilms from "../screens/TintFilms/TintFilms";
 import Room from "../screens/Room/Room";
 import Windows from "../screens/Windows/Windows";
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { colors } from "../themes/colors";
+import { Icon } from "@rneui/base";
 
 const OnBoardingStack = createNativeStackNavigator();
 const SignInStack = createNativeStackNavigator();
+const Tab = createMaterialBottomTabNavigator();
+
+
+function BottomTabs() {
+    return (
+      <Tab.Navigator 
+      activeColor={colors.primaryColor}
+      inactiveColor={colors.darkGray}
+      barStyle={{ backgroundColor: colors.whiteColor }}>
+        <Tab.Screen 
+        name="BrowseFilms" 
+        component={BrowseFilms}
+        options={{
+            tabBarLabel: 'Window Films',
+            tabBarIcon: ({ color }) => (
+              <Icon name="windows" type="antdesign" color={color} size={26} />
+            ),
+          }} />
+        <Tab.Screen name="Settings" component={Landing} />
+      </Tab.Navigator>
+    );
+  }
 
 function SignInScreens() {
     return (
@@ -31,7 +56,7 @@ function SignInScreens() {
 function OnBoarding() {
     return (
         <OnBoardingStack.Navigator screenOptions={{ headerShown: false }}>
-            <OnBoardingStack.Screen name="Landing" component={Landing} />
+            <OnBoardingStack.Screen name="Landing" component={BottomTabs} />
             <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} />
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />

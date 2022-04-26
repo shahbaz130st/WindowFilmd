@@ -3,6 +3,7 @@ import { View, TextInput, Image, Text, TouchableOpacity } from "react-native";
 import _ from "lodash";
 import { images } from "../assets/images/index";
 import { colors } from "../themes/colors";
+import { Icon } from "@rneui/base";
 const InputField = (props) => {
     const [hidePass, setHidePass] = useState(true);
     const [isFocused, setIsFocused] = useState(false)
@@ -25,6 +26,9 @@ const InputField = (props) => {
                 <View style={props.sterickTextViewStyle}>
                     <Text style={props.sterickTextStyle}>{props.sterick}</Text>
                 </View>
+            }
+            {!_.isNil(props.search) &&
+                    <Icon name="search1" type="antdesign" style={{marginRight:10}} size={16} color={colors.primaryColor}/>
             }
             <TextInput
                 placeholder={props.placeholder}
