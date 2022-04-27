@@ -3,12 +3,13 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay,
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         paddingHorizontal:10,
+        marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor
     },
     headerText:{
         fontSize:20,
@@ -31,7 +32,8 @@ export const styles = StyleSheet.create({
         fontSize:23,
         paddingTop:10,
         paddingLeft:20,
-        fontWeight:'400',
+        paddingBottom:5,
+        fontWeight:'500',
     },
     QouteText1:{
         fontSize:16,
@@ -49,5 +51,5 @@ export const styles = StyleSheet.create({
         height:50,
         borderBottomColor:colors.greyColor,
         borderBottomWidth:1.2
-    }
+    },selectedbtn: { color: colors.whiteColor, backgroundColor: colors.primaryColor },
 })

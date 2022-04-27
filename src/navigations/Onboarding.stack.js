@@ -18,6 +18,7 @@ import Windows from "../screens/Windows/Windows";
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { colors } from "../themes/colors";
 import { Icon } from "@rneui/base";
+import RoomList from "../screens/RoomList/RoomList";
 
 const OnBoardingStack = createNativeStackNavigator();
 const SignInStack = createNativeStackNavigator();
@@ -39,7 +40,20 @@ function BottomTabs() {
               <Icon name="windows" type="antdesign" color={color} size={26} />
             ),
           }} />
-        <Tab.Screen name="Settings" component={Landing} />
+        <Tab.Screen name="Quotes" component={Landing} 
+        options={{
+            tabBarLabel: 'Quotes',
+            tabBarIcon: ({ color }) => (
+              <Icon name="all-inbox" type="material" color={color} size={26} />
+            ),
+          }} />
+        <Tab.Screen name="Map" component={Map} 
+        options={{
+            tabBarLabel: 'Map',
+            tabBarIcon: ({ color }) => (
+              <Icon name="map" type="material" color={color} size={26} />
+            ),
+          }} />
       </Tab.Navigator>
     );
   }
@@ -57,10 +71,10 @@ function OnBoarding() {
     return (
         <OnBoardingStack.Navigator screenOptions={{ headerShown: false }}>
             <OnBoardingStack.Screen name="Landing" component={BottomTabs} />
-            <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} />
+            <OnBoardingStack.Screen name="List" component={RoomList} />
+            {/* <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} /> */}
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />
-            <OnBoardingStack.Screen name="Map" component={Map} />
             <OnBoardingStack.Screen name="MapClient" component={MapClient} />
             <OnBoardingStack.Screen name="CreateQuote" component={CreateQuote} />
             <OnBoardingStack.Screen name="SelectRoom" component={SelectRoom} />

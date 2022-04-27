@@ -9,6 +9,9 @@ const Header1 = (props) => {
             <Text style={styles.textHead}>
                 {props.left}
             </Text>
+            {props.plus?<TouchableOpacity onPress={props.onPress}>
+            <Icon name="plus" type="entypo" size={30} color={colors.primaryColor}/>
+            </TouchableOpacity>:null}
         </View>
     )
 

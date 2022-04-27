@@ -98,7 +98,10 @@ const SingleFilms = (props) => {
             <Button
             buttonStyle={[commonStyles.buttonStyle1,ongoing && styles.selectedbtn]}
             textStyle={[commonStyles.buttonTextStyle, ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
-            onPress={() => setOngoing(true)}
+            onPress={() => {
+              setOngoing(true)
+              props.navigation.navigate('CreateQuote')
+            }}
             text={"Add to Order"}
             />
             <Button

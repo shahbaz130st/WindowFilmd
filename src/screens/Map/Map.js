@@ -7,6 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 import Footer1 from "../../components/Footer1";
 import MapView, { Callout, Marker, PROVIDER_GOOGLE } from 'react-native-maps'
 import { Icon } from "@rneui/base";
+import Header1 from "../../components/MainHeader";
 
 const Map = (props) => {
   const [data,setData]=useState([
@@ -18,7 +19,8 @@ const Map = (props) => {
   const navigation =useNavigation()
     return (
         <>
-          <Header backArrow leftOnPress={()=>navigation.goBack()} left={"Quotes"} center={"Nearby Clients"}/>
+        <Header1 left="Near By Clients"/>
+          <Footer1/>
           <View style={styles.mainView}>
           <View style={{flex:1}}>
           <MapView
@@ -60,7 +62,6 @@ const Map = (props) => {
               </MapView>
           </View>
           </View>
-          <Footer1 left={"About"} right={"Settings"}/>
         </>
     )
 }

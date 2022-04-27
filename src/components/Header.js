@@ -23,7 +23,7 @@ const Header = (props) => {
             </Text>
         </View>
         </TouchableOpacity>
-        <Text style={{...styles.textHead,fontSize:17,marginRight:props.backArrow?15:0}}>
+        <Text style={{...styles.textHead,fontSize:17,fontWeight:'700',marginRight:props.backArrow?15:0}}>
                 {props.center}
             </Text>
         <TouchableOpacity onPress={props.rightOnPress}>
@@ -41,9 +41,12 @@ const Header = (props) => {
                color={colors.whiteColor} 
                style={{paddingHorizontal:5}}
                size={18}/>
-               </View>
+               </View>:
+               props.dellIcon?
+                <Icon
+                name='delete' type="material-community-icons" color={colors.primaryColor} size={25}/>
                :
-            <Text style={styles.textHead}>
+            <Text style={{...styles.textHead,color:props.right=='Save'?colors.primaryColor:colors.greyColor}}>
                 {props.right}
             </Text>
             }

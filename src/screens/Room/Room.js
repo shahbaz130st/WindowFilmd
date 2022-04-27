@@ -10,7 +10,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import QuoteItem from "../../components/QuoteItem";
 import InputField from "../../components/InputField";
 import { Icon } from "@rneui/base";
-import RoomModal from "../../components/RoomModal";
+import Button from "../../components/Button";
 const Room = (props) => {
   const data=[
     {Title:'Name',subtitle:"Nutter",id:1},
@@ -44,9 +44,10 @@ const Room = (props) => {
 
     return (
         <>
-          <Header rightIcon={true} backArrow={true} leftOnPress={()=>navigation.goBack()} left={"Job"} center={"Room"}/>
+          <Header dellIcon backArrow leftOnPress={()=>navigation.goBack()} left={"Job"} center={"Room"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
+            <View style={{height:20}}/>
                <FlatList
                 data={data}
                 keyExtractor={item =>item.id}
@@ -55,17 +56,15 @@ const Room = (props) => {
                 style={{ width: "100%" }}
                 renderItem={({ item, index }) => {
                   return (
-                  <View style={{padding:10}}>
+                    <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                     <QuoteItem 
                     title={item.Title}
                     subTitle={item.subtitle}
                     onPress={()=>onPress(item)}/>
-                    <View style={styles.line1}/>
                     </View>
                     )
                   }}/>
                   <Text style={{...styles.QouteText,fontSize:20}}>Windows</Text>
-                  <View style={styles.line5}/>
                   <TouchableOpacity onPress={()=>navigation.navigate('Windows')}>
                     <View style={styles.headerView}>
                   <View style={styles.NewTextView}>
@@ -76,10 +75,9 @@ const Room = (props) => {
                     </Text>
                   </View>
                   <Icon
-                  name='right' type="antdesign" color={colors.greyColor} size={25}/>
+                  name='right' type="antdesign" color={colors.primaryColor} size={17}/>
                   </View>
                   </TouchableOpacity>
-                  <View style={styles.line3}/>
                   <FlatList
                   data={data2}
                   keyExtractor={item =>item.id}
@@ -88,37 +86,44 @@ const Room = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
-                    <View style={{padding:10}}>
+                      <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                       <QuoteItem title={item.Title}
                        subTitle={item.subtitle}/>
                       <View style={styles.line1}/>
                       </View>
                       )}}
                       />
-               <View style={styles.area}/>
+            <View style={{height:20}}/>
               <TouchableOpacity >
-               <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+               <View style={{...styles.headerView,paddingVertical:10}}>
                    <Text style={styles.title1}>
                 Include in Quote and cut list
                    </Text>
-                <View style={{ backgroundColor: isEnabled ? colors.greyColor : colors.whiteColor, borderRadius: 20 }}>
+                <View style={{ backgroundColor: isEnabled ? colors.primaryColor : colors.greyColor, borderRadius: 20 }}>
                <Switch
                  ios_backgroundColor={colors.greyColor}
-                thumbColor={isEnabled ? colors.whiteColor : colors.greyColor}
-                 trackColor={{true: colors.greyColor, false: colors.greyColor}}
+                thumbColor={isEnabled ? colors.whiteColor : colors.whiteColor}
+                 trackColor={{true: colors.primaryColor, false: colors.greyColor}}
                  onValueChange={toggleSwitch}
                  value={isEnabled}
                 />
               </View>
                 </View>
                </TouchableOpacity>
-               <View style={styles.line3}/>
           </KeyboardAwareScrollView>
           </View>
-          <Footer 
+          <View style={{justifyContent:'center',alignItems:'center',backgroundColor:colors.lightGraay,paddingBottom:20,paddingHorizontal:20}}>
+                <Button
+                   buttonStyle={[commonStyles.buttonStyle,{backgroundColor:colors.primaryColor} ]}
+                   textStyle={[commonStyles.buttonTextStyle,{fontWeight:'bold',color:colors.whiteColor}]}
+                   text={'Create Room Quote'}
+                   onPress={() => props.navigation.navigate("CreateQuote")}
+                   />
+             </View>
+          {/* <Footer 
           leftOnPress={()=>navigation.navigate('CreateQuote')}
           left={"Create Room Quote"} 
-          rightIcon />
+          rightIcon /> */}
         </>
     )
 }

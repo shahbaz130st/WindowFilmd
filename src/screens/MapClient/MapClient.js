@@ -10,7 +10,7 @@ import { useNavigation, useRoute } from "@react-navigation/native";
 import QuoteItem from "../../components/QuoteItem";
 import InputField from "../../components/InputField";
 import { Icon } from "@rneui/base";
-import RoomModal from "../../components/RoomModal";
+import Button from "../../components/Button";
 const MapClient = (props) => {
   const data=[
     {Title:'Client',subtitle:"Nutter",id:1},
@@ -39,13 +39,14 @@ const MapClient = (props) => {
         break;
     }
   }
+  const [ongoing, setOngoing] = useState(true)
 
-  const [visible,setVisible]=useState(false)
     return (
         <>
-          <Header rightIcon={true} backArrow={true} leftOnPress={()=>navigation.goBack()} left={route?.params?.title ? route.params.title:"Map"} center={"Client Name"}/>
+          <Header dellIcon backArrow leftOnPress={()=>navigation.goBack()} left={route?.params?.title ? route.params.title:"Map"} center={"Client Name"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
+          <Text style={{...styles.QouteText,fontSize:16}}>Browse Tint Films</Text>
                <FlatList
                 data={data}
                 keyExtractor={item =>item.id}
@@ -54,7 +55,7 @@ const MapClient = (props) => {
                 style={{ width: "100%" }}
                 renderItem={({ item, index }) => {
                   return (
-                  <View style={{padding:10}}>
+                    <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                     <QuoteItem 
                     title={item.Title}
                     subTitle={item.subtitle}
@@ -63,21 +64,20 @@ const MapClient = (props) => {
                     </View>
                     )
                   }}/>
-                  <Text style={{...styles.QouteText,fontSize:20}}>Rooms</Text>
-                  <TouchableOpacity onPress={()=>setVisible(true)}>
+                  <Text style={{...styles.QouteText,fontSize:16}}>Rooms</Text>
+                  <TouchableOpacity onPress={()=>{navigation.navigate('List')}}>
                     <View style={styles.headerView}>
                   <View style={styles.NewTextView}>
                    <Icon
-                    name='circle-with-plus' style={{marginRight:10}} type="entypo" color={colors.primaryColor} size={25}/>
+                    name='circle-with-plus' style={{marginRight:5}} type="entypo" color={colors.primaryColor} size={20}/>
                     <Text style={{...styles.headerText,color:colors.blackTextColor,fontWeight:'500'}}>
                     Add a new Room
                     </Text>
                   </View>
                   <Icon
-                  name='right' type="antdesign" color={colors.greyColor} size={25}/>
+                  name='right' type="antdesign" color={colors.primaryColor} size={17}/>
                   </View>
                   </TouchableOpacity>
-                  <View style={styles.line3}/>
                   <FlatList
                   data={data2}
                   keyExtractor={item =>item.id}
@@ -86,17 +86,15 @@ const MapClient = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
-                    <View style={{padding:10}}>
+                      <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                       <QuoteItem title={item.Title}
                        subTitle={item.subtitle}
                        onPress={()=>navigation.navigate('Room')}/>
-                      <View style={styles.line1}/>
                       </View>
                       )}}
                       />
-               <View style={styles.area}/>
               <TouchableOpacity >
-               <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+               <View style={{...styles.headerView,paddingVertical:10,marginTop:15}}>
                    <Text style={styles.title1}>
                 Duplicate Job
                    </Text>
@@ -104,15 +102,27 @@ const MapClient = (props) => {
                name='right' type="antdesign" color={colors.greyColor} size={25}/>
                 </View>
                </TouchableOpacity>
-               <View style={styles.line3}/>
           </KeyboardAwareScrollView>
           </View>
-          <Footer 
-          left={"Create Quote"} 
-          rightIcon 
-          center={"Send Cut List"}
-          leftOnPress={()=>navigation.navigate("CreateQuote")}/>
-          <RoomModal isVisible={visible} hide={()=>setVisible(false)}/>
+          <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:colors.lightGraay}}>
+            <Button
+            buttonStyle={[commonStyles.buttonStyle2 ,ongoing && styles.selectedbtn]}
+            textStyle={[commonStyles.buttonTextStyle, ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
+            onPress={() => {
+              setOngoing(true)
+              props.navigation.navigate('CreateQuote',{title:'MapClient'})
+            }}
+            text={"Create Quote"}
+            />
+            <Button
+            buttonStyle={[commonStyles.buttonStyle2,!ongoing && styles.selectedbtn]}
+            onPress={() => {setOngoing(false)
+              props.navigation.navigate('NewQuote',{title:'Quote'})}
+            }
+            textStyle={[commonStyles.buttonTextStyle,!ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
+            text={"Send Cut List"}
+            />
+            </View>
         </>
     )
 }

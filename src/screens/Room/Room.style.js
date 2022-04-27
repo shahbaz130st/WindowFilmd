@@ -3,12 +3,16 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay,
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         paddingHorizontal:10,
+        marginHorizontal:20,
+        borderRadius:5,
+        marginBottom:2,
+        backgroundColor:colors.whiteColor
     },
     headerText:{
         fontSize:20,
@@ -31,7 +35,7 @@ export const styles = StyleSheet.create({
         fontSize:23,
         paddingTop:10,
         paddingLeft:20,
-        fontWeight:'400',
+        fontWeight:'600',
     },
     QouteText1:{
         fontSize:16,

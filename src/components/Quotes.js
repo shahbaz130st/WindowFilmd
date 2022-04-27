@@ -7,24 +7,27 @@ const Quote = (props) => {
     return (
         <View style={styles.Head}> 
         <TouchableOpacity onPress={props.onPress}>
-            <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center'}}>   
             <View>
+            <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center'}}>   
             <Text style={styles.title1}>
                 {props.title}
             </Text>
-            <Text style={styles.subtitle1}>
-                {props.subtitle}
-            </Text>
-            <Text style={styles.subtitle1}>
+            <Icon
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
+            </View>
+            <Text style={styles.subtitle2}>
                 {props.place}
+            </Text>
+            <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center'}}>   
+            <Text style={styles.subtitle1}>
+                {`Quote: `}
+                <Text style={{color:colors.blackTextColor,fontWeight:'700'}}>
+                {props.subtitle}
+                </Text>
             </Text>
             <Text style={styles.subtitle1}>
                 {props.date}
             </Text>
-            </View>
-            <View>
-            <Icon
-               name='right' type="antdesign" color={colors.greyColor} size={25}/>
             </View>
             </View>
         </TouchableOpacity>
@@ -36,13 +39,17 @@ export default Quote;
 const styles = StyleSheet.create(
     {
         Head: {
-            padding:15,
+            padding:18,
         },title1:{
             fontSize:16,
             fontWeight:'700'
         },subtitle1:{
             fontSize:13,
-            fontWeight:'500'
+            fontWeight:'500',
+        },subtitle2:{
+            fontSize:13,
+            fontWeight:'500',
+            marginVertical:8
         }
     }
 )

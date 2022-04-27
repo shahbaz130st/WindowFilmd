@@ -3,19 +3,29 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         padding:10,
-        paddingVertical:10
+        paddingVertical:10,
+        borderRadius:5,
+        marginBottom:3,
+        backgroundColor:colors.whiteColor,
+        // marginTop:10,
+        marginHorizontal:20,
     },headerView1:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         padding:10,
-        paddingVertical:20
+        paddingVertical:12,
+        marginHorizontal:20,
+        borderRadius:5,
+        marginBottom:3,
+        backgroundColor:colors.whiteColor,
+        marginTop:10
     },
     headerText:{
         fontSize:17,
@@ -23,11 +33,12 @@ export const styles = StyleSheet.create({
         fontWeight:'500'
     },
     headerText4:{
-        fontSize:20,
+        fontSize:16,
         color:colors.greyColor,
         fontWeight:'500',
         textTransform:'uppercase',
-        padding:15
+        marginHorizontal:20,
+        marginVertical:10
     },
     headerText3:{
         fontSize:17,
@@ -37,7 +48,7 @@ export const styles = StyleSheet.create({
     },
     headerText1:{
         fontSize:17,
-        color:colors.blue,
+        color:colors.primaryColor,
         fontWeight:'400'
     },
     line:{
@@ -52,5 +63,16 @@ export const styles = StyleSheet.create({
         height:50,
         borderBottomColor:colors.greyColor,
         borderBottomWidth:1.2
+    },
+    titleText:{
+        fontSize:15,
+        fontWeight:'500',
+        padding:10
+    },
+    subTitleText:{
+        fontSize:15,
+        fontWeight:'500',
+        padding:10,
+        color:colors.primaryColor
     }
 })

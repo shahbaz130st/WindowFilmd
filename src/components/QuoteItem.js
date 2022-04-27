@@ -16,7 +16,7 @@ const QuoteItem = (props) => {
                 {props.subTitle}
             </Text>
             <Icon
-               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
             </View>
             </View>
         </TouchableOpacity>
@@ -36,7 +36,8 @@ const styles = StyleSheet.create(
         },title2:{
             fontSize:15,
             fontWeight:'500',
-            color:colors.greyTypeColor
+            color:colors.greyTypeColor,
+            paddingRight:5
         }
     }
 )

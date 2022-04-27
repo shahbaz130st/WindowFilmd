@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useRoute } from "@react-navigation/native";
+import React, { useEffect, useState } from "react";
 import {  Text, View, StyleSheet, FlatList, TouchableWithoutFeedback } from "react-native";
 import { colors } from "../themes/colors"
 const Footer1 = (props) => {
@@ -8,9 +9,11 @@ const Footer1 = (props) => {
         { id:3,data: 'Sent Quotes' },
     ])
         const [selectedId, setSelectedId] = useState(1);
+        const route=useRoute()
+        useEffect(()=>console.log('rouetet==>>>>',route),[])
     return (
         <View style={styles.Head}> 
-        <View style={{marginLeft:15,overflow:'hidden',borderRadius:10,borderColor:colors.whiteColor,borderWidth:0.5}}>
+        <View style={{borderRadius:15,backgroundColor:colors.lightGraay,elevation:5}}>
        <FlatList
             data={listOfItems}
             horizontal={true}
@@ -26,8 +29,8 @@ const Footer1 = (props) => {
                 setSelectedId(item.id)
             }}
             >
-        <View style={{...styles.view3,backgroundColor:iconVisible?colors.whiteColor:colors.darkGray}}>
-          <Text style={{color:iconVisible?colors.darkGray:colors.whiteColor}}>
+        <View style={{...styles.view3,backgroundColor:iconVisible?route.name=='Quotes'?colors.whiteColor:colors.primaryColor:colors.lightGraay,elevation:iconVisible?10:0}}>
+          <Text style={{color:iconVisible?colors.darkGray:colors.darkGray,fontSize:14,fontWeight:'500'}}>
                 {item.data}
             </Text>
          </View>
@@ -44,23 +47,24 @@ export default Footer1;
 const styles = StyleSheet.create(
     {
         Head: {
-            backgroundColor: colors.darkGray,
+            backgroundColor: colors.whiteColor,
             alignItems: 'center',
-            justifyContent: 'space-between',flexDirection:'row',
-            padding:15,
+            justifyContent: 'center',
+            flexDirection:'row',
+            padding:10,
         },textHead:{
             fontSize:16,
             fontWeight:'400',
             color:colors.whiteColor
         },view3:{
             borderColor:colors.whiteColor,
-            borderWidth:1,
+            borderWidth:0.5,
             padding:8,
-            margin:0,
             flexDirection:'row',
+            borderRadius:10,
             }, 
             recomView:{
-            justifyContent:'space-around'
+            justifyContent:'space-around',
             }
     }
 )

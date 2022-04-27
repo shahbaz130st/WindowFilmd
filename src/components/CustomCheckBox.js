@@ -10,10 +10,10 @@ const CustomCheckBox = props => {
             marginVertical: 5
         }, props.containerStyle]} onPress={props.onChange}>
             <View
-                style={[styles.checkBoxContainer,{borderColor:props.isChecked?colors.primaryColor:colors.greyColor},props.checkstyle]}>
+                style={[styles.checkBoxContainer,{backgroundColor:props.isChecked?colors.primaryColor:colors.whiteColor,borderColor:props.isChecked?colors.primaryColor:colors.greyColor},props.checkstyle]}>
                 {props.isChecked &&
                     <Image
-                        style={{ width: '80%', height: '80%', resizeMode: "contain", tintColor: props.tintColor }}
+                        style={{ width: '90%', height: '90%', resizeMode: "contain", tintColor: props.tintColor }}
                         source={checkIcon}
                     />
                 }

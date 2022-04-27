@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 import { TouchableOpacity, Text, Image, View, StyleSheet, FlatList, TouchableWithoutFeedback } from "react-native";
-import { colors } from "../themes/colors"
+import { colors } from "../../themes/colors"
 import { Icon } from "@rneui/base";
-import Modal from "react-native-modal";
-import Header from "./Header";
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
-import InputField from "./InputField";
-import commonStyles from "../themes/commonStyles";
+import InputField from "../../components/InputField";
+import commonStyles from "../../themes/commonStyles";
+import Header from "../../components/Header";
+import { useNavigation } from "@react-navigation/native";
 
 
-const RoomModal = (props) => {
+const RoomList = (props) => {
     const [password, setPassword] = useState("")
-    
+    const navigation = useNavigation()
+
   const [selectedId, setSelectedId] = useState("");
   const [hearList, setHearList] = useState("");
 
@@ -55,33 +56,31 @@ const RoomModal = (props) => {
   ];
 
     return (
-        <Modal isVisible={props.isVisible} style={{margin:0}} onBackButtonPress={props.hide}>
-        <Header right={'Save'} leftOnPress={props.hide} rightOnPress={props.hide} left={"Cancel"} center={"New Room"}/>
-        <View style={{ flex: 1,backgroundColor:colors.whiteColor,margin:0 }}>
+      <>
+        <Header backArrow right={'Save'} leftOnPress={()=>navigation.goBack()} rightOnPress={()=>navigation.goBack()} left={"Map"} center={"New Room"}/>
+        <View style={{ flex: 1,backgroundColor:colors.lightGraay,margin:0 }}>
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
         <TouchableOpacity>
-              <View style={styles.mainView}>
-              <Text style={styles.headerText}>
+              {/* <View style={styles.mainView}> */}
+              <Text style={styles.headerText3}>
                 Room Name
               </Text>
-               </View>
+               {/* </View> */}
             </TouchableOpacity>
-            <View style={styles.line}/>
-              <View style={styles.headerView}>
-              <Text style={styles.headerText3}>
+              <View style={styles.mainView}>
+              <Text style={styles.headerText}>
                Customer Name
               </Text>
                 <InputField
                 placeholder={"required"}
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'50%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'50%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={commonStyles.passwordInputinnerStyle}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                     />
                </View>
-               <View style={styles.line}/>
-               <FlatList
+            <FlatList
             data={DATA}
             showsVerticalScrollIndicator={false}
             keyExtractor={(item)=>item.id}
@@ -93,6 +92,7 @@ const RoomModal = (props) => {
                 onPress={()=>{
                     setSelectedId(item.id)
                     setHearList(item.title)
+                    navigation.navigate('Room')
                   }}
                 >
                  <View style={styles.mainView}>
@@ -101,21 +101,20 @@ const RoomModal = (props) => {
                      </Text>
                      { backgroundColor &&
                      <Icon
-                     name='check' type="entypo" color={colors.darkGray} size={20}/>
+                     name='check' type="entypo" color={colors.primaryColor} size={20}/>
                      }
                  </View>
                  </TouchableWithoutFeedback>
-                 <View style={styles.line}/>
                  </>)}}
             extraData={selectedId}
             />
         </KeyboardAwareScrollView>
         </View>
-      </Modal>
+            </>
     )
 
 }
-export default RoomModal;
+export default RoomList;
 const styles = StyleSheet.create(
     {
         mainView:{
@@ -123,7 +122,11 @@ const styles = StyleSheet.create(
             justifyContent:"space-between",
             alignItems:'center',
             padding:10,
-            paddingVertical:20
+            paddingVertical:15,
+            marginHorizontal:20,
+            borderRadius:5,
+            marginBottom:2,
+            backgroundColor:colors.whiteColor
         },
         headerView:{
             flexDirection:'row',
@@ -139,9 +142,12 @@ const styles = StyleSheet.create(
         },
         headerText3:{
             fontSize:17,
-            color:colors.redTextColor,
+            color:colors.greyColor,
             fontWeight:'500',
-            lineHeight: 30
+            lineHeight: 30,
+            marginTop:15,
+            marginHorizontal:20,
+            textTransform:"uppercase"
         },
         line:{
             height:0.8,

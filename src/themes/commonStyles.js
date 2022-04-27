@@ -29,6 +29,16 @@ const styles = StyleSheet.create(
             marginHorizontal:10,
             backgroundColor:colors.whiteColor
         },
+        buttonStyle2: {
+            // marginVertical: 4,
+            width: "43%",
+            height: Platform.OS === "android" ? phoneScreen.height * 7 / 100 : phoneScreen.height * 6 / 100,
+            alignItems: "center",
+            borderRadius: phoneScreen.height * 1 / 100,
+            marginHorizontal:5,
+            backgroundColor:colors.whiteColor,
+            marginBottom:10
+        },
         buttonTextStyle: {
             textAlign: "center",
             color: colors.greyColor,
@@ -81,6 +91,14 @@ const styles = StyleSheet.create(
             width: "85%",
             padding: 0,
             color: colors.blackTextColor,
+            fontSize: 16,
+            fontWeight: "400",
+        },
+        passwordInputinnerStyle1: {
+            height: "100%",
+            width: "85%",
+            padding: 0,
+            color: colors.primaryColor,
             fontSize: 16,
             fontWeight: "400",
         },

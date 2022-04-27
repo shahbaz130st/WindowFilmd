@@ -39,7 +39,7 @@ const BrowseFilms = (props) => {
               value={password}
               search
               />
-              <Text style={{...styles.QouteText1,fontSize:20}}>BROWSE TINT FILMS</Text>
+              <Text style={{...styles.QouteText1,fontSize:15}}>BROWSE TINT FILMS</Text>
                <FlatList
                 data={data}
                 keyExtractor={item =>item.id}
@@ -48,12 +48,12 @@ const BrowseFilms = (props) => {
                 style={{ width: "100%" }}
                 renderItem={({ item, index }) => {
                   return (
-                    <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
+                    <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                     <QuoteItem title={item.Title} onPress={()=>navigation.navigate('SingleFilms',{title:item.Title})}/>
                     </View>
                     )
                   }}/>
-                  <Text style={{...styles.QouteText1,fontSize:20}}>DUAL REFLECTIVE FILMS</Text>
+                  <Text style={{...styles.QouteText1,fontSize:15}}>DUAL REFLECTIVE FILMS</Text>
                   <FlatList
                   data={data2}
                   keyExtractor={item =>item.id}
@@ -62,12 +62,12 @@ const BrowseFilms = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
-                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
+                      <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                       <QuoteItem title={item.Title}/>
                       </View>
                       )}}
                       />
-                  <Text style={{...styles.QouteText1,fontSize:20}}>DUAL REFLECTIVE FILMS</Text>
+                  <Text style={{...styles.QouteText1,fontSize:15}}>DUAL REFLECTIVE FILMS</Text>
                   <FlatList
                   data={data2}
                   keyExtractor={item =>item.id}
@@ -76,7 +76,7 @@ const BrowseFilms = (props) => {
                   style={{ width: "100%" }}
                   renderItem={({ item, index }) => {
                     return (
-                      <View style={{marginHorizontal:20,marginBottom:2,backgroundColor:colors.whiteColor}}>
+                      <View style={{marginHorizontal:20,borderRadius:5,marginBottom:2,backgroundColor:colors.whiteColor}}>
                       <QuoteItem title={item.Title}/>
                       </View>
                       )}}

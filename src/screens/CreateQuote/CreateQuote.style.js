@@ -3,13 +3,17 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay,
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         padding:10,
-        paddingVertical:20
+        // paddingVertical:20,
+        marginHorizontal:20,
+        marginBottom:2,
+        backgroundColor:colors.whiteColor,
+        borderRadius:5  
     },
     headerText:{
         fontSize:17,
@@ -28,8 +32,8 @@ export const styles = StyleSheet.create({
         lineHeight: 30
     },
     headerText1:{
-        fontSize:17,
-        color:colors.greyColor,
+        fontSize:16,
+        color:colors.lightGraay,
         fontWeight:'400'
     },
     line:{
@@ -41,8 +45,14 @@ export const styles = StyleSheet.create({
         color:colors.redTextColor,
         fontWeight:'500',
     },area:{
-        height:50,
-        borderBottomColor:colors.greyColor,
-        borderBottomWidth:1.2
-    }
+        height:20,
+    },
+    subView:{
+        flexDirection:'row',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    icon1:{
+        marginLeft:10
+    },selectedbtn: { color: colors.whiteColor, backgroundColor: colors.primaryColor },
 })

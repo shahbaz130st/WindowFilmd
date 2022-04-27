@@ -3,13 +3,17 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay,
     },headerView:{
         flexDirection:'row',
         justifyContent:"space-between",
         alignItems:'center',
         padding:10,
-        paddingVertical:10
+        paddingVertical:10,
+        marginHorizontal:20,
+        backgroundColor:colors.whiteColor,
+        borderRadius:5,
+        marginBottom:2
     },headerView1:{
         flexDirection:'row',
         justifyContent:"space-between",
@@ -24,7 +28,7 @@ export const styles = StyleSheet.create({
     },
     headerText5:{
         fontSize:17,
-        color:colors.blackTextColor,
+        color:colors.darkGray,
         fontWeight:'500'
     },
     headerText4:{

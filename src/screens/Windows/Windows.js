@@ -40,36 +40,34 @@ const Windows = (props) => {
   const route=useRoute()
     return (
         <>
-          <Header rightIcon backArrow leftOnPress={()=>navigation.goBack()} left={'Room'} center={"Unnamed window"}/>
+          <Header rightIcon backArrow leftOnPress={()=>navigation.goBack()} left={'Room'} center={"580 *112"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
-            <View style={styles.line}/>
+          <View style={{height:20}}/>
               <View style={styles.headerView}>
-              <Text style={styles.headerText3}>
+              <Text style={styles.headerText5}>
                Width
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
                     />
                </View>
-               <View style={styles.line}/>
                <View style={styles.headerView}>
-              <Text style={styles.headerText3}>
+              <Text style={styles.headerText5}>
                Height
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setJob(text)}
                 value={job}
                     />
                </View>
-               <View style={styles.line}/>
 
               <View style={styles.headerView}>
               <Text style={styles.headerText5}>
@@ -77,53 +75,59 @@ const Windows = (props) => {
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setAddress(text)}
                 value={address}
                     />
                </View>
-               <View style={styles.line}/>
-               <View style={styles.area}/>
+               <View style={{height:20}}/>
               <View style={styles.headerView}>
               <Text style={styles.headerText5}>
               Name
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setState(text)}
                 value={state}
                     />
                </View>
-               <View style={styles.line}/>
                <TouchableOpacity >
-               <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+               <View style={styles.headerView}>
                    <Text style={styles.headerText5}>
                 Tint film
                    </Text>
-                   <View style={{flexDirection:'row'}}>
+                   <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center'}}>
                    <Text style={styles.headerText}>
                 Otpitune
                    </Text>
                   <Icon
-               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
                    </View>
                 </View>
                </TouchableOpacity>
-               <View style={styles.line}/>
                <TouchableOpacity >
-               <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+               <View style={styles.headerView}>
                    <Text style={styles.headerText5}>
                 Notes
                    </Text>
                   <Icon
-               name='right' type="antdesign" color={colors.greyColor} size={25}/>
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
                 </View>
                </TouchableOpacity>
-               <View style={styles.line}/>
-               <View style={styles.area}/>
+               <View style={{height:20}}/>
+               <TouchableOpacity >
+               <View style={styles.headerView}>
+                   <Text style={styles.headerText5}>
+                Pictures
+                   </Text>
+                  <Icon
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
+                </View>
+               </TouchableOpacity>
+               <View style={{height:20}}/>
 
                <View style={styles.headerView}>
               <Text style={styles.headerText5}>
@@ -156,20 +160,18 @@ const Windows = (props) => {
             extraData={selectedId}/>
             </View>
                </View>
-               <View style={styles.line}/>
                <View style={styles.headerView}>
               <Text style={styles.headerText5}>
                Frame Type
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setPhone(text)}
                 value={phone}
                     />
                </View>
-               <View style={styles.line}/>
                <View style={styles.headerView}>
               <Text style={styles.headerText5}>
                Frame colour
@@ -201,57 +203,53 @@ const Windows = (props) => {
             extraData={selectedId1}/>
             </View>
               </View>
-               <View style={styles.line}/>
               <View style={styles.headerView}>
               <Text style={styles.headerText5}>
                Glass type
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setAddress1(text)}
                 value={address1}
                     />
                </View>
-               <View style={styles.line}/>
               <View style={styles.headerView}>
               <Text style={styles.headerText5}>
                Glass thickness
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setState1(text)}
                 value={state1}
                     />
                </View>
-               <View style={styles.line}/>
-               <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+               <View style={styles.headerView}>
                    <Text style={styles.headerText5}>
                 Include corking
                    </Text>
-                <View style={{ backgroundColor: isEnabled ? colors.greyColor : colors.whiteColor, borderRadius: 20 }}>
+                <View style={{ backgroundColor: isEnabled ? colors.primaryColor : colors.greyColor, borderRadius: 20 }}>
                <Switch
                  ios_backgroundColor={colors.greyColor}
-                thumbColor={isEnabled ? colors.whiteColor : colors.greyColor}
-                 trackColor={{true: colors.greyColor, false: colors.greyColor}}
+                thumbColor={isEnabled ? colors.whiteColor : colors.whiteColor}
+                 trackColor={{true: colors.primaryColor, false: colors.greyColor}}
                  onValueChange={toggleSwitch}
                  value={isEnabled}
                 />
               </View>
                 </View>
-                <View style={styles.line}/>
-                <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center',padding:15}}>
+                <View style={styles.headerView}>
                    <Text style={styles.headerText5}>
                 Film removal required
                    </Text>
-                <View style={{ backgroundColor: isEnabled1 ? colors.greyColor : colors.whiteColor, borderRadius: 20 }}>
+                <View style={{ backgroundColor: isEnabled1 ? colors.primaryColor : colors.greyColor, borderRadius: 20 }}>
                <Switch
                  ios_backgroundColor={colors.greyColor}
-                thumbColor={isEnabled1 ? colors.whiteColor : colors.greyColor}
-                 trackColor={{true: colors.greyColor, false: colors.greyColor}}
+                thumbColor={isEnabled1 ? colors.whiteColor : colors.whiteColor}
+                 trackColor={{true: colors.primaryColor, false: colors.greyColor}}
                  onValueChange={toggleSwitch1}
                  value={isEnabled1}
                 />
@@ -263,16 +261,16 @@ const Windows = (props) => {
               </Text>
                 <InputField
                 placeholderTextColor={colors.greyTypeColor}
-                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',borderColor:colors.whiteColor}]}
+                containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
                 inputStyle={[commonStyles.passwordInputinnerStyle,{color:colors.blue}]}
                 onChangeText={(text) => setLadder(text)}
                 value={ladder}
                     />
                </View>
-               <View style={styles.line}/>
+               <View style={{height:40}}/>
           </KeyboardAwareScrollView>
           </View>
-         <Footer rightIcon/>
+         {/* <Footer rightIcon/> */}
         </>
     )
 }
