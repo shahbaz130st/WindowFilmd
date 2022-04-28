@@ -23,6 +23,7 @@ import Setting from "../screens/Settings/Settings";
 import Picture from "../screens/Windows/Picture";
 import FilmRemoval from "../screens/CreateQuote/FilmRemoval";
 import Bussines from "../screens/register/Bussines";
+import Email from "../screens/Email/Email";
 
 const OnBoardingStack = createNativeStackNavigator();
 const SignInStack = createNativeStackNavigator();
@@ -95,6 +96,7 @@ function OnBoarding() {
             <OnBoardingStack.Screen name="Room" component={Room} />
             <OnBoardingStack.Screen name="Windows" component={Windows} />
             <OnBoardingStack.Screen name="FilmRemoval" component={FilmRemoval} />
+            <OnBoardingStack.Screen name="Email" component={Email} />
         </OnBoardingStack.Navigator>
     )
 }

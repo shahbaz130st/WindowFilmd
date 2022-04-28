@@ -31,17 +31,17 @@ const NewQuote = (props) => {
   ]
   const data2=[
     {Title:'Address',subtitle:'32 Cambridge road',id:1},
-    {Title:'Suburb / State',subtitle:'1 window',id:1},
+    {Title:'Suburb / State',subtitle:'1 window',id:2},
   ]
   const data3=[
     {Title:'Name',subtitle:'12',id:1},
-    {Title:'Email',subtitle:'Rusian',id:1},
-    {Title:'Phone',subtitle:'Rusian Job',id:1},
-    {Title:'Mobile',subtitle:'Rusian Job',id:1},
+    {Title:'Email',subtitle:'Rusian',id:2},
+    {Title:'Phone',subtitle:'Rusian Job',id:3},
+    {Title:'Mobile',subtitle:'Rusian Job',id:4},
   ]
   const data4=[
     {Title:'Address',subtitle:'32 Cambridge road',id:1},
-    {Title:'Suburb / State',subtitle:'1 window',id:1}
+    {Title:'Suburb / State',subtitle:'1 window',id:2}
   ]
     return (
         <>
@@ -308,7 +308,7 @@ const NewQuote = (props) => {
                             buttonStyle={[commonStyles.buttonStyle,{backgroundColor:colors.whiteColor} ]}
                             textStyle={[commonStyles.buttonTextStyle,{fontWeight:'bold'}]}
                             text={route?.params?.title ?'Send Quote':"Send Cut List"}
-                            onPress={() => props.navigation.navigate("Landing",{screen:"BrowseFilms"})}
+                            onPress={() =>{route?.params?.title?props.navigation.navigate("Email"): props.navigation.navigate("Landing",{screen:"BrowseFilms"})}}
                             />
                 </View>
         </>
