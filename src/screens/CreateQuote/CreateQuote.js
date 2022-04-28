@@ -14,6 +14,7 @@ import Button from "../../components/Button";
 const CreateQuote = (props) => {
   const [password, setPassword] = useState("")
   const [price, setPrice] = useState("")
+  const [priceSealing, setPriceSealing] = useState("")
   const data=[
     {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:1},
     {Title:'KBSC job center',subTitle:"quote 26",place:'KBSC in kombay',date:'last modified:2/12/21',id:2},
@@ -45,7 +46,7 @@ const CreateQuote = (props) => {
 
     return (
         <>
-          <Header dellIcon backArrow leftOnPress={()=>navigation.goBack()} left={"Map"} center={"New Quote"}/>
+          <Header rightOnPress={()=>navigation.navigate('Landing',{screen:"Quotes"})} dellIcon={route?.params?.title =="MapClient"?false:true} backArrow leftOnPress={()=>navigation.goBack()} left={"Map"} center={"New Quote"}/>
           <View style={styles.mainView}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
           <View style={styles.area}/>
@@ -66,7 +67,7 @@ const CreateQuote = (props) => {
                </View>
             </TouchableOpacity>
               <View style={styles.headerView}>
-                <View style={{flexDirection:'row'}}>
+              <View style={{flexDirection:'row'}}>
               <Text style={styles.headerText3}>
                Price Per m
               </Text>
@@ -80,14 +81,14 @@ const CreateQuote = (props) => {
                 inputStyle={commonStyles.passwordInputinnerStyle}
                 onChangeText={(text) => setPassword(text)}
                 value={password}
-                    />
+                />
                </View>
-               {route?.params?.title =="MapClient"?
+                <>
                <View style={styles.headerView}>
                <View style={{flexDirection:'row'}}>
-             <Text style={styles.headerText3}>
-              Price Film Removal
-             </Text>
+               <Text style={styles.headerText3}>
+                 Price Film Removal
+               </Text>
                </View>
                <InputField
                placeholder={"$ per m" + "\u00B2"}
@@ -99,16 +100,24 @@ const CreateQuote = (props) => {
                value={price}
                    />
               </View>
-               :null}
-               {route?.params?.title =="MapClient"?
                <View style={styles.headerView}>
-               <Text style={styles.headerText}>
-                 Film Removal
-               </Text>
-               <Icon
-               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
-                </View>
-               :
+               <View style={{flexDirection:'row'}}>
+             <Text style={styles.headerText3}>
+              Price for Sealing
+             </Text>
+               </View>
+               <InputField
+               placeholder={"$ per m" + "\u00B2"}
+               autoComplete={"password"}
+               placeholderTextColor={colors.greyTypeColor}
+               containerStyle={[commonStyles.inputContainerStyle,{width:'40%',height:30,borderColor:colors.whiteColor}]}
+               inputStyle={commonStyles.passwordInputinnerStyle}
+               onChangeText={(text) => setPriceSealing(text)}
+               value={priceSealing}
+                   />
+              </View>
+              </>
+               {route?.params?.title !=="MapClient"?
             <View style={styles.headerView}>
               <Text style={styles.headerText}>
                 Film and labour total
@@ -116,8 +125,17 @@ const CreateQuote = (props) => {
               <Text style={styles.headerText1}>
               $0.00
               </Text>
-               </View>
+               </View>:null
             }
+               <TouchableOpacity onPress={()=>navigation.navigate('FilmRemoval')}>
+               <View style={styles.headerView}>
+               <Text style={styles.headerText}>
+                 Film Removal
+               </Text>
+               <Icon
+               name='right' type="antdesign" color={colors.primaryColor} size={17}/>
+                </View>
+               </TouchableOpacity>
                <View style={styles.area}/>
                {route?.params?.title =="MapClient"?
                <View style={styles.headerView}>
@@ -204,35 +222,25 @@ const CreateQuote = (props) => {
                </View>
           </KeyboardAwareScrollView>
           </View>
-          {route?.params?.title =="MapClient"?
-          <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:colors.lightGraay}}>
+          <View style={{justifyContent:'center',alignItems:'center',backgroundColor:colors.lightGraay}}>
           <Button
-          buttonStyle={[commonStyles.buttonStyle2 ,ongoing && styles.selectedbtn]}
+          buttonStyle={[commonStyles.buttonStyle3 ,ongoing && styles.selectedbtn]}
           textStyle={[commonStyles.buttonTextStyle, ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
           onPress={() => {
             setOngoing(true)
             // props.navigation.navigate('CreateQuote',{title:'MapClient'})
           }}
-          text={"Create Quote"}
+          text={"Create Deatiled Proposal"}
           />
           <Button
-          buttonStyle={[commonStyles.buttonStyle2,!ongoing && styles.selectedbtn]}
+          buttonStyle={[commonStyles.buttonStyle3,!ongoing && styles.selectedbtn]}
           onPress={() => {setOngoing(false)
-            // props.navigation.navigate('NewQuote',{title:'Quote'})
+            props.navigation.navigate('NewQuote',{title:'Quote'})
           }}
           textStyle={[commonStyles.buttonTextStyle,!ongoing && styles.selectedbtn,{fontWeight:'bold'}]}
-          text={"Send Cut List"}
+          text={"Quick Quote"}
           />
           </View>
-          :
-          <View style={{justifyContent:'center',alignItems:'center'}}>
-          <Button
-            buttonStyle={[commonStyles.buttonStyle1,{width:'90%'}]}
-            // onPress={() => setOngoing(false)}
-            textStyle={[commonStyles.buttonTextStyle,{fontWeight:'bold'}]}
-            text={"Email Quote"}
-            />
-            </View>}
           {/* <Footer leftOnPress={()=>navigation.navigate('SelectRoom')} left={"Select Rooms"} right={"Email Quotes"}/> */}
         </>
     )

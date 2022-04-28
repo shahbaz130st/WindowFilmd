@@ -9,6 +9,7 @@ import { useNavigation } from "@react-navigation/native";
 import QuoteItem from "../../components/QuoteItem";
 import InputField from "../../components/InputField";
 import Header1 from "../../components/MainHeader";
+import { useSelector } from "react-redux";
 
 const BrowseFilms = (props) => {
   const data=[
@@ -24,6 +25,7 @@ const BrowseFilms = (props) => {
   const [password, setPassword] = useState("")
 
   const navigation = useNavigation()
+  const {registerReducer}=useSelector(state=>state)
 
     return (
         <>

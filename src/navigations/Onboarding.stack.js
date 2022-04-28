@@ -19,6 +19,10 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import { colors } from "../themes/colors";
 import { Icon } from "@rneui/base";
 import RoomList from "../screens/RoomList/RoomList";
+import Setting from "../screens/Settings/Settings";
+import Picture from "../screens/Windows/Picture";
+import FilmRemoval from "../screens/CreateQuote/FilmRemoval";
+import Bussines from "../screens/register/Bussines";
 
 const OnBoardingStack = createNativeStackNavigator();
 const SignInStack = createNativeStackNavigator();
@@ -54,6 +58,13 @@ function BottomTabs() {
               <Icon name="map" type="material" color={color} size={26} />
             ),
           }} />
+        <Tab.Screen name="Settings" component={Setting} 
+        options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({ color }) => (
+              <Icon name="setting" type="antdesign" color={color} size={26} />
+            ),
+          }} />
       </Tab.Navigator>
     );
   }
@@ -64,6 +75,7 @@ function SignInScreens() {
             <OnBoardingStack.Screen name="Splash" component={Splash} />
             <OnBoardingStack.Screen name="Login" component={Login} />
             <OnBoardingStack.Screen name="Register" component={Register} />
+            <OnBoardingStack.Screen name="Bussines" component={Bussines} />
         </SignInStack.Navigator>
     )
 }
@@ -72,7 +84,7 @@ function OnBoarding() {
         <OnBoardingStack.Navigator screenOptions={{ headerShown: false }}>
             <OnBoardingStack.Screen name="Landing" component={BottomTabs} />
             <OnBoardingStack.Screen name="List" component={RoomList} />
-            {/* <OnBoardingStack.Screen name="BrowseFilms" component={BrowseFilms} /> */}
+            <OnBoardingStack.Screen name="Picture" component={Picture} />
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />
             <OnBoardingStack.Screen name="MapClient" component={MapClient} />
@@ -82,6 +94,7 @@ function OnBoarding() {
             <OnBoardingStack.Screen name="TintFilms" component={TintFilms} />
             <OnBoardingStack.Screen name="Room" component={Room} />
             <OnBoardingStack.Screen name="Windows" component={Windows} />
+            <OnBoardingStack.Screen name="FilmRemoval" component={FilmRemoval} />
         </OnBoardingStack.Navigator>
     )
 }

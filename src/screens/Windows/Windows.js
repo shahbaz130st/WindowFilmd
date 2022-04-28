@@ -118,10 +118,10 @@ const Windows = (props) => {
                 </View>
                </TouchableOpacity>
                <View style={{height:20}}/>
-               <TouchableOpacity >
+               <TouchableOpacity  onPress={()=>navigation.navigate('Picture')}>
                <View style={styles.headerView}>
                    <Text style={styles.headerText5}>
-                Pictures
+                Add Pictures
                    </Text>
                   <Icon
                name='right' type="antdesign" color={colors.primaryColor} size={17}/>

@@ -39,6 +39,16 @@ const styles = StyleSheet.create(
             backgroundColor:colors.whiteColor,
             marginBottom:10
         },
+        buttonStyle3: {
+            // marginVertical: 4,
+            width: "90%",
+            height: Platform.OS === "android" ? phoneScreen.height * 7 / 100 : phoneScreen.height * 6 / 100,
+            alignItems: "center",
+            borderRadius: phoneScreen.height * 1 / 100,
+            marginHorizontal:5,
+            backgroundColor:colors.whiteColor,
+            marginBottom:10
+        },
         buttonTextStyle: {
             textAlign: "center",
             color: colors.greyColor,

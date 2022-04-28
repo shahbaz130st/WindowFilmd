@@ -7,7 +7,6 @@ const registerReducer = (state = initialState, action) => {
     switch (action.type) {
         case REGISTERDATA:
             return {
-                ...state,
                 data: action.Data,
             }
         case SIGN_OUT:

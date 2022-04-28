@@ -20,13 +20,13 @@ const CustomCheckBox = props => {
             </View>
             <View style={[{ marginLeft: 10, }, props.textStyle]}>
                 <Text style={[{
-                    fontSize: 18,
-                    color: 'black',
+                    fontSize: 16,
+                    color: colors.greyColor,
                 }, props.labelStyle]}>{props.label}<Text style={props.label1Style}>{props.label1}</Text></Text>
                 {!_.isNil(props.label2) &&
                     <Text style={[{
-                        fontSize: 14,
-                        color: '#999999',
+                        fontSize: 13,
+                        color: colors.greyColor,
                     }, props.labelStyle2]}>{props.label2}</Text>
                 }
             </View>

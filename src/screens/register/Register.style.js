@@ -3,7 +3,7 @@ import { colors } from "../../themes/colors";
 export const styles = StyleSheet.create({
     mainView: {
         flex: 1,
-        backgroundColor: colors.secondaryColor,
+        backgroundColor: colors.lightGraay,
         alignItems: "center",
         // justifyContent:"center",
     },
@@ -56,37 +56,26 @@ export const styles = StyleSheet.create({
         width: "85%",
         borderColor:colors.greyColor,
         borderWidth:1
+    },
+    typeText:{
+        marginTop:10,
+        fontSize:18,
+        fontWeight:'500',
+        color:colors.blackTextColor
+    },textUpload:{
+        marginTop:20,
+        marginBottom:10,
+        fontSize:15,
+        fontWeight:'500'
+    },uploadBox:{
+        height:150,
+        width:'100%',
+        backgroundColor:colors.whiteColor,
+        borderColor:colors.greyColor,
+        borderWidth:1,
+        justifyContent:'center',
+        alignItems:'center',
+        borderRadius:5
     }
-
 })
 
-
-
-// import { StyleSheet } from "react-native";
-// import { colors } from "../../themes/colors";
-// export const styles = StyleSheet.create({
-//     mainView: {
-//         flex: 1,
-//         backgroundColor: colors.secondaryColor
-//     },
-//     primaryTextStyle: {
-//         color: colors.primaryColor,
-//         fontSize: 20,
-//         fontWeight: "700"
-//     },
-//     blackTextStyle: {
-//         color: colors.blackTextColor,
-//         fontSize: 20,
-//         fontWeight: "700"
-//     },image:{
-//         width:320,
-//         height:120
-//     },
-//     typeText:{
-//         marginTop:10,
-//         fontSize:18,
-//         fontWeight:'500',
-//         color:colors.blackTextColor
-//     }
-
-// })

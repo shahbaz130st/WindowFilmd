@@ -71,5 +71,21 @@ export const styles = StyleSheet.create({
         }, 
         recomView:{
         justifyContent:'space-around'
+        },
+        uploadBox:{
+            height:200,
+            width:'90%',
+            backgroundColor:colors.whiteColor,
+            borderColor:colors.greyColor,
+            borderWidth:1,
+            justifyContent:'center',
+            alignItems:'center',
+            borderRadius:5
+        },textUpload:{
+            marginHorizontal:15,
+            marginTop:20,
+            marginBottom:10,
+            fontSize:15,
+            fontWeight:'500'
         }
 })

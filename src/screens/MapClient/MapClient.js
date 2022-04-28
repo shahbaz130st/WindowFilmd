@@ -31,7 +31,7 @@ const MapClient = (props) => {
         break;
     
       case 'Tint Films':
-        navigation.navigate('TintFilms')
+        // navigation.navigate('TintFilms')
         break;
     
       default:
@@ -71,7 +71,7 @@ const MapClient = (props) => {
                    <Icon
                     name='circle-with-plus' style={{marginRight:5}} type="entypo" color={colors.primaryColor} size={20}/>
                     <Text style={{...styles.headerText,color:colors.blackTextColor,fontWeight:'500'}}>
-                    Add a new Room
+                    Add a New Room
                     </Text>
                   </View>
                   <Icon

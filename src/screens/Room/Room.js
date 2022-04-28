@@ -33,7 +33,7 @@ const Room = (props) => {
         break;
     
       case 'Tint Films':
-        navigation.navigate('TintFilms')
+        // navigation.navigate('TintFilms')
         break;
     
       default:

@@ -12,6 +12,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import Svg, {ClipPath, Defs, G, Path} from "react-native-svg";
 import { SvgXml } from 'react-native-svg';
 import constants from "../../utils/ApiConstants";
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scrollview';
 
 const Login = (props) => {
     const [email, setEmail] = useState("")
@@ -23,6 +24,7 @@ const Login = (props) => {
             <LinearGradient colors={[colors.whiteColor, colors.lightBlue]} style={{flex: 1,width:'100%'}}>
             <SvgXml xml={constants.xml} width="100%" height="25%" />
             <Image source={require('../../assets/images/splash1.png')} style={styles.image}/>
+            <KeyboardAwareScrollView  contentContainerStyle={{ flexGrow: 1 }} showsVerticalScrollIndicator={false} >
                 <View style={{flex:1,justifyContent:'center'}} >
                     <View style={{flex:2,justifyContent:'flex-end'}}>
                     <Text style={styles.headerText}>Login</Text>
@@ -81,6 +83,7 @@ const Login = (props) => {
                 </View>
               </View>
              </View>
+             </KeyboardAwareScrollView>
             <Loader visible={loading} />
             </LinearGradient>
         </View>

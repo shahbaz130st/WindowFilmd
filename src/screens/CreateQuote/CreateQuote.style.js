@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     },
     headerText1:{
         fontSize:16,
-        color:colors.lightGraay,
+        color:colors.lightGreyColor,
         fontWeight:'400'
     },
     line:{
