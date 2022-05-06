@@ -10,12 +10,12 @@ import Button from "../../components/Button";
 import commonStyles from "../../themes/commonStyles";
 
 const SingleFilms = (props) => {
-  const data=[
+  const [data,setData]=useState([
     {Title:'Group',subtitle:'-',id:1},
     {Title:'Sub-Group',subtitle:'-',id:2},
-    {Title:'Code',subtitle:'RO5678Cv',id:4},
-    {Title:'Type',subtitle:'Interior',id:5}
-  ]
+    {Title:'Code',subtitle:'-',id:4},
+    {Title:'Type',subtitle:'-',id:5}
+  ])
   const data3=[
     {Title:'24"wide',subtitle:'310 mm',id:1},
     {Title:'36"wide',subtitle:'510 mm',id:2},
@@ -37,9 +37,17 @@ const SingleFilms = (props) => {
   const navigation =useNavigation()
   const [ongoing, setOngoing] = useState(true)
 
+  useEffect(()=>setData([
+    {Title:'Group',subtitle:route?.params?.group||'-',id:1},
+    {Title:'Sub-Group',subtitle:route?.params?.subGroups||'-',id:2},
+    {Title:'Code',subtitle:route?.params?.code||'-',id:4},
+    {Title:'Type',subtitle:route?.params?.type||'-',id:5}
+  ]),[route])
     return (
         <>
-          <Header backArrow={true} rightOnPress={()=>navigation.navigate('DateSheet',{title:route.params.title})} leftOnPress={()=>navigation.goBack()} left={"Films"} right={"Datesheet"} center={route.params.title}/>
+          <Header backArrow={true} rightOnPress={()=>console.log(route.params)
+            // navigation.navigate('DateSheet')
+            } leftOnPress={()=>navigation.goBack()} left={"Films"} right={"Datesheet"} center={route.params.title}/>
           <View style={{...styles.mainView}}>
           <KeyboardAwareScrollView showsVerticalScrollIndicator={false} >
             <View style={{marginTop:15}}>

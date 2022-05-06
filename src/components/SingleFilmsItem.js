@@ -4,8 +4,11 @@ import { colors } from "../themes/colors"
 import { Icon } from "@rneui/base";
 
 const SingleFilmsItem = (props) => {
+    const OnPress=()=>{
+        // 
+    }
     return (
-        <TouchableOpacity onPress={props.onPress}>
+        <View>
             <View style={styles.Head}> 
             <View style={{flexDirection:"row",justifyContent:'space-between',alignItems:'center'}}>
             <View style={{flexDirection:'row',justifyContent:'space-between',alignItems:'center'}}>
@@ -28,6 +31,7 @@ const SingleFilmsItem = (props) => {
                type="antdesign"
                color={colors.greyColor}
                size={20}
+               onPress={OnPress}
                />
                :props.circleIcon?
                <Icon
@@ -43,7 +47,7 @@ const SingleFilmsItem = (props) => {
             </View>
             </View>
         </View>
-        </TouchableOpacity>
+        </View>
     )
 
 }
