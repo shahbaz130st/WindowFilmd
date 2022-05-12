@@ -3,9 +3,9 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>602231463023-o0slvdn390g467mdkmavbuiun2id9rfq.apps.googleusercontent.com</string>
+	<string>602231463023-no5o7ektuarjnv9g1rami6fj9unlmsjn.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.602231463023-o0slvdn390g467mdkmavbuiun2id9rfq</string>
+	<string>com.googleusercontent.apps.602231463023-no5o7ektuarjnv9g1rami6fj9unlmsjn</string>
 	<key>ANDROID_CLIENT_ID</key>
 	<string>602231463023-tm4dh8iatr0iuqsgkpfkig3f28osf7d2.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
@@ -15,7 +15,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.windowFilms</string>
+	<string>com.windowfilmswa.appV2</string>
 	<key>PROJECT_ID</key>
 	<string>wfwaapp</string>
 	<key>STORAGE_BUCKET</key>
@@ -31,6 +31,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:602231463023:ios:12e9b558d26138f539019a</string>
+	<string>1:602231463023:ios:cd54f79fd9dbb20e39019a</string>
 </dict>
 </plist>
