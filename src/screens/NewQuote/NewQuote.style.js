@@ -73,6 +73,11 @@ export const styles = StyleSheet.create({
         fontSize:15,
         fontWeight:'500',
         padding:10,
-        color:colors.primaryColor
+        color:colors.primaryColor,
+        borderWidth:1,
+        width:"40%",
+        textAlign:'right',
+        borderRadius: 10,
+        marginVertical:10
     }
 })

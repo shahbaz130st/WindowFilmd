@@ -32,5 +32,5 @@ export const styles = StyleSheet.create({
         padding:20,
         fontWeight:'400',
         marginTop:15
-    },selectedbtn: { color: colors.whiteColor, backgroundColor: colors.primaryColor },
+    },selectedbtn: { color: colors.whiteColor, backgroundColor: colors.primaryColor,width:'90%' },
 })

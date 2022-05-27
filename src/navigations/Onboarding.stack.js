@@ -9,6 +9,8 @@ import SingleFilms from "../screens/BrowseFilms/SingleFilms";
 import DateSheet from "../screens/BrowseFilms/DateSheet";
 import Map from "../screens/Map/Map";
 import MapClient from "../screens/MapClient/MapClient";
+import Notes from "../screens/Notes";
+import SelectFilms from "../screens/SelectFilms";
 import CreateQuote from "../screens/CreateQuote/CreateQuote";
 import SelectRoom from "../screens/CreateQuote/SelectRoom";
 import NewQuote from "../screens/NewQuote/NewQuote";
@@ -89,6 +91,8 @@ function OnBoarding() {
             <OnBoardingStack.Screen name="SingleFilms" component={SingleFilms} />
             <OnBoardingStack.Screen name="DateSheet" component={DateSheet} />
             <OnBoardingStack.Screen name="MapClient" component={MapClient} />
+            <OnBoardingStack.Screen name="Notes" component={Notes} />
+            <OnBoardingStack.Screen name="SelectFilms" component={SelectFilms} />
             <OnBoardingStack.Screen name="CreateQuote" component={CreateQuote} />
             <OnBoardingStack.Screen name="SelectRoom" component={SelectRoom} />
             <OnBoardingStack.Screen name="NewQuote" component={NewQuote} />

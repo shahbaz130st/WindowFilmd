@@ -30,7 +30,7 @@ const Header = (props) => {
            {
             props.rightIcon?
             <Icon
-               name='home' type="font-awesome" color={colors.whiteColor} size={25}/>
+               name='home' type="font-awesome" color={props.rightIconColor ? props.rightIconColor : colors.whiteColor} size={25}/>
                :props.right2Icon?
                <View style={{flexDirection:'row'}}>
                <Icon

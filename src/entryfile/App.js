@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StatusBar, LogBox, Text, TouchableOpacity } from "react-native";
+import { View, StatusBar, LogBox, Text, TouchableOpacity , SafeAreaView } from "react-native";
 import { styles } from "./App.style";
 import { strings } from "../localization/i18n";
 // import Preference from "react-native-preference";
@@ -17,11 +17,11 @@ const App = () => {
     return (
         <Provider store={store}>
         <PersistGate loading={null} persistor={persistor}>
-        <View style={styles.mainView}>
-            <StatusBar
+        <SafeAreaView style={styles.mainView}>
+            {/* <StatusBar
                 translucent={true}
                 hidden={true}
-            />
+            /> */}
             {/* <Text>{strings("loginScreen.Hi")}</Text>
 
             <TouchableOpacity onPress={() => {
@@ -37,7 +37,7 @@ const App = () => {
                 <Text>{"change language"}</Text>
             </TouchableOpacity> */}
             <Routing />
-        </View>
+        </SafeAreaView>
         </PersistGate>
         </Provider>
     )
