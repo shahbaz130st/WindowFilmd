@@ -1,4 +1,4 @@
-package com.windowfilmswa.appV2;
+package com.windowfilmswa.appv02;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
