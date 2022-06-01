@@ -95,6 +95,7 @@ const Landing = (props) => {
             removeClippedSubviews={false}
             style={{ width: "100%" }}
             renderItem={({ item, index }) => {
+              console.log(`check for render item===>`,item);
               return (
                 <>
                   <View style={{ marginHorizontal: 20, borderRadius: 10, marginBottom: 15, backgroundColor: colors.whiteColor }}>

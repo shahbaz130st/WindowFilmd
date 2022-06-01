@@ -8,10 +8,12 @@ import commonStyles from "../../themes/commonStyles";
 import { colors } from "../../themes/colors";
 import { useNavigation, useRoute } from "@react-navigation/native";
 import QuoteItem from "../../components/QuoteItem";
+import firestore from '@react-native-firebase/firestore';
 import InputField from "../../components/InputField";
 import { Icon } from "@rneui/base";
 import Button from "../../components/Button";
 import _ from 'lodash';
+import MapClientFunction from './MapClientFunction';
 const MapClient = (props) => {
   const { quotesData } = props?.route?.params;
   const data = [
@@ -42,6 +44,7 @@ const MapClient = (props) => {
     }
   }
   const [ongoing, setOngoing] = useState(true)
+  const [loading, getQuotes] = RegisterFunction(props)
 
   return (
     <>
