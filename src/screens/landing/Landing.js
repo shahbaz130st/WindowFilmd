@@ -95,7 +95,6 @@ const Landing = (props) => {
             removeClippedSubviews={false}
             style={{ width: "100%" }}
             renderItem={({ item, index }) => {
-              console.log(`check for render item===>`,item);
               return (
                 <>
                   <View style={{ marginHorizontal: 20, borderRadius: 10, marginBottom: 15, backgroundColor: colors.whiteColor }}>
@@ -103,7 +102,7 @@ const Landing = (props) => {
                       subtitle={item.job_name}
                       place={item.site_address}
                       date={`22-02-2021`}
-                      onPress={() => navigation.navigate('MapClient', { title: 'Quotes' })} />
+                      onPress={() => navigation.navigate('MapClient', { title: 'Quotes',item: item })} />
                   </View>
                 </>
               )
