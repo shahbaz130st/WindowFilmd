@@ -1,7 +1,8 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { View, Text, Image, Alert, TouchableOpacity } from "react-native";
 import { launchImageLibrary } from 'react-native-image-picker';
+import PhoneInput from "react-native-phone-number-input";
 import moment from "moment";
 import { styles } from "./Register.style";
 import InputField from "../../components/InputField";
@@ -24,9 +25,12 @@ const ImageOptions = {
     mediaType: 'photo',
 };
 const Bussines = (props) => {
+
+
     const [Bussiness, setBussiness] = useState("")
     const [ABN, setABN] = useState("")
     const [phoneNumber, setPhoneNumber] = useState("")
+    const [formattedValue, setFormattedValue] = useState("");
     const [contactPerson, setContactPerson] = useState("")
     const [instalationAddress, setInstalationAddress] = useState("")
     const [city, setCity] = useState("")
@@ -38,6 +42,7 @@ const Bussines = (props) => {
     const [check1, setCheck1] = useState(false);
     const [check2, setCheck2] = useState(false);
     const navigation = useNavigation()
+    const phoneInput = useRef()
 
     const [loading, , BussinessValidation] = RegisterFunction(props)
 
@@ -104,7 +109,28 @@ const Bussines = (props) => {
                                 sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                                 sterickTextStyle={commonStyles.sterickTextStyle}
                             />
-                            <InputField
+
+                            {/* <View style={[commonStyles.numberContainerStyle]}> */}
+                            <PhoneInput
+                                containerStyle={{ width: '100%', height: 52, borderRadius: 5, marginTop: 18 }}
+                                textContainerStyle={{ backgroundColor: colors.whiteColor, borderRadius: 5 }}
+                                textInputStyle={{ height: 52 }}
+                                ref={phoneInput}
+                                defaultValue={phoneNumber}
+                                defaultCode='AU'
+                                layout="first"
+                                onChangeText={(text) => {
+                                    setPhoneNumber(text);
+                                    // console.log(text);
+                                }}
+                                onChangeFormattedText={(text) => {
+                                    setFormattedValue(text);
+                                    // console.log(text+phoneNumber);
+                                }}
+                                withDarkTheme
+                            />
+                            {/* </View> */}
+                            {/* <InputField
                                 placeholder={"Phone"}
                                 placeholderTextColor={colors.placeholderColor}
                                 containerStyle={[commonStyles.inputContainerStyle, { marginTop: 18 }]}
@@ -114,7 +140,7 @@ const Bussines = (props) => {
                                 // sterick={"*"}
                                 sterickTextViewStyle={commonStyles.sterickTextViewStyle}
                                 sterickTextStyle={commonStyles.sterickTextStyle}
-                            />
+                            /> */}
                             <InputField
                                 placeholder={"ABN Number"}
                                 placeholderTextColor={colors.placeholderColor}
@@ -201,7 +227,7 @@ const Bussines = (props) => {
                                     text={"Done"}
                                     onPress={() => {
                                         // signUpUser();
-                                        BussinessValidation(Bussiness, contactPerson, phoneNumber, ABN, instalationAddress, city, state, member, WFAANZ, installer, companyLogo)
+                                        BussinessValidation(Bussiness, contactPerson, formattedValue + phoneNumber, ABN, instalationAddress, city, state, member, WFAANZ, installer, companyLogo)
                                     }}
                                 />
                             </View>
